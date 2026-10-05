@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZANTHOS 运营站 · 跳转中…</title>
+</head>
+<body>
+  <p>正在跳转到 ZANTHOS 运营站… 如未自动跳转，<a id="lnk" href="#">请点击此处</a>。</p>
+  <script>
+    // 固定入口：GitHub Pages 提供稳定网址，运行时再跳到会变的隧道网址
+    var FALLBACK = "https://sells-abilities-cove-obvious.trycloudflare.com";
+    function go(u) {
+      var dest = u + location.pathname + location.search + location.hash;
+      window.location.replace(dest);
+    }
+    var lnk = document.getElementById("lnk");
+    lnk.href = FALLBACK + location.pathname;
+    try {
+      fetch("current-url.json?t=" + Date.now())
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.url) { go(d.url); }
+          else { go(FALLBACK); }
+        })
+        .catch(function () { go(FALLBACK); });
+    } catch (e) {
+      go(FALLBACK);
+    }
+    // 兜底：4 秒后无论如何跳走
+    setTimeout(function () { go(FALLBACK); }, 4000);
+  </script>
+</body>
+</html>
