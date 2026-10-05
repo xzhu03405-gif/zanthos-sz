@@ -2,33 +2,141 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ZANTHOS 运营站 · 跳转中…</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>ZANTHOS</title>
+  <style>
+    /* 样式对齐运营站登录页(/session/setup)：深海军蓝 + 薄荷绿点缀 */
+    :root{color-scheme:dark}
+    *{box-sizing:border-box}
+    body{
+      margin:0;min-height:100dvh;
+      background:
+        radial-gradient(circle at 20% 10%,#17364a 0,transparent 35%),
+        radial-gradient(circle at 90% 90%,#203747 0,transparent 35%),
+        #07101c;
+      color:#eef5fa;font:15px system-ui,-apple-system,"Segoe UI",sans-serif;
+      display:grid;place-items:center;padding:24px;
+    }
+    main{
+      width:min(440px,100%);padding:32px;
+      border:1px solid #35546b;border-radius:26px;
+      background:rgba(10,22,36,.9);box-shadow:0 24px 80px #0009;
+    }
+    header{display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .brand{font-size:13px;letter-spacing:.12em;color:#8fd8ca}
+    select{
+      width:auto;padding:8px 11px;margin:0;
+      border:1px solid #456174;border-radius:12px;
+      background:#182f40;color:#e9f8f4;font:inherit;font-size:13px;
+    }
+    h1{font-size:28px;margin:18px 0 8px}
+    p{color:#b9c9d4;line-height:1.6}
+    .status{display:flex;align-items:center;gap:10px;margin-top:18px;color:#b9c9d4;font-size:14px}
+    .spinner{
+      width:18px;height:18px;flex:0 0 auto;border-radius:50%;
+      border:2px solid #456174;border-top-color:#8fe1ce;animation:z-spin .8s linear infinite;
+    }
+    @keyframes z-spin{to{transform:rotate(360deg)}}
+    .dest{
+      margin:10px 0 0;font-size:12.5px;color:#8196a5;word-break:break-all;
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    }
+    button{
+      width:100%;margin-top:20px;padding:13px 14px;border:0;border-radius:12px;
+      font:inherit;font-weight:750;cursor:pointer;
+      background:linear-gradient(135deg,#8fe1ce,#b6eddf);color:#0b2924;
+    }
+    button:hover{filter:brightness(1.05)}
+    .foot{margin:14px 0 0;font-size:12.5px;color:#8196a5;line-height:1.6}
+    .hidden{display:none}
+  </style>
 </head>
 <body>
-  <p>正在跳转到 ZANTHOS 运营站… 如未自动跳转，<a id="lnk" href="#">请点击此处</a>。</p>
+  <main>
+    <header>
+      <span class="brand">ZANTHOS</span>
+      <select id="lang" aria-label="界面语言">
+        <option value="zh">简体中文</option>
+        <option value="zh-TW">繁體中文</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="en">English</option>
+      </select>
+    </header>
+
+    <h1 id="title">正在进入运营站</h1>
+    <p id="intro">正在为你跳转，请稍候…</p>
+
+    <div class="status">
+      <span class="spinner"></span>
+      <span id="statusText">正在连接…</span>
+    </div>
+    <p class="dest hidden" id="dest"></p>
+
+    <button id="goBtn">立即进入</button>
+
+    <p class="foot" id="foot">固定入口会自动跟随服务器地址变化，只需收藏这一个网址。</p>
+  </main>
+
   <script>
-    // 固定入口：GitHub Pages 提供稳定网址，运行时再跳到会变的隧道网址
+    // 回退目标：current-url.json 拉取失败时使用（此值随每次推送自动更新）
     var FALLBACK = "https://sells-abilities-cove-obvious.trycloudflare.com";
-    function go(u) {
-      var dest = u + location.pathname + location.search + location.hash;
-      window.location.replace(dest);
+    var target = FALLBACK, redirected = false;
+
+    var copy = {
+      zh:     { t:'正在进入运营站', i:'正在为你跳转，请稍候…', b:'立即进入', conn:'正在连接…', f:'固定入口会自动跟随服务器地址变化，只需收藏这一个网址。' },
+      'zh-TW':{ t:'正在進入營運站', i:'正在為你跳轉，請稍候…', b:'立即進入', conn:'正在連線…', f:'固定入口會自動跟隨伺服器位址變化，只需收藏這一個網址。' },
+      vi:     { t:'Đang vào trạm vận hành', i:'Đang chuyển hướng, vui lòng chờ…', b:'Vào ngay', conn:'Đang kết nối…', f:'Cổng cố định tự cập nhật theo địa chỉ máy chủ, bạn chỉ cần lưu một liên kết này.' },
+      en:     { t:'Opening the workstation', i:'Redirecting, please wait…', b:'Enter now', conn:'Connecting…', f:'This fixed entry follows server address changes automatically — bookmark just this one link.' }
+    };
+
+    function normalize(x){
+      x = String(x || '').toLowerCase();
+      if (['zh-tw','zh-hk','zh-mo'].indexOf(x) >= 0) return 'zh-TW';
+      if (x.indexOf('vi') === 0) return 'vi';
+      if (x.indexOf('en') === 0) return 'en';
+      return 'zh';
     }
-    var lnk = document.getElementById("lnk");
-    lnk.href = FALLBACK + location.pathname;
+
+    function apply(value){
+      var l = normalize(value), c = copy[l];
+      document.documentElement.lang = (l === 'zh-TW') ? 'zh-TW' : l;
+      document.getElementById('title').textContent = c.t;
+      document.getElementById('intro').textContent = c.i;
+      document.getElementById('goBtn').textContent = c.b;
+      document.getElementById('foot').textContent = c.f;
+      if (!redirected) document.getElementById('statusText').textContent = c.conn;
+      document.getElementById('lang').value = l;
+      try { localStorage.setItem('zanthos-redirect-language', l); } catch (e) {}
+      return l;
+    }
+
+    try { apply(localStorage.getItem('zanthos-redirect-language') || navigator.language); }
+    catch (e) { apply(navigator.language); }
+    document.getElementById('lang').onchange = function (e) { apply(e.target.value); };
+
+    function dest() { return target + location.pathname + location.search + location.hash; }
+    function go() { redirected = true; window.location.replace(dest()); }
+    document.getElementById('goBtn').onclick = go;
+
+    // 读取当前隧道地址（由深圳端自动化在域名变化时自动更新）
     try {
-      fetch("current-url.json?t=" + Date.now())
+      fetch('current-url.json?t=' + Date.now())
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          if (d && d.url) { go(d.url); }
-          else { go(FALLBACK); }
+          if (d && d.url) {
+            target = d.url;
+            var el = document.getElementById('dest');
+            el.textContent = String(d.url).replace(/^https?:\/\//, '');
+            el.classList.remove('hidden');
+            setTimeout(go, 800);
+          } else { setTimeout(go, 300); }
         })
-        .catch(function () { go(FALLBACK); });
-    } catch (e) {
-      go(FALLBACK);
-    }
+        .catch(function () { setTimeout(go, 300); });
+    } catch (e) { setTimeout(go, 300); }
+
     // 兜底：4 秒后无论如何跳走
-    setTimeout(function () { go(FALLBACK); }, 4000);
+    setTimeout(function () { if (!redirected) go(); }, 4000);
   </script>
 </body>
 </html>
