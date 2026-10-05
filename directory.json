@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "server": {
+    "id": "shenzhen-public",
+    "name": "Shenzhen public entry",
+    "endpoint": "https://sells-abilities-cove-obvious.trycloudflare.com",
+    "countryCode": "",
+    "countryName": "",
+    "region1": "",
+    "region2": "",
+    "region3": "",
+    "selectedBy": "fallback",
+    "matchedLocationDepth": 0
+  },
+  "checkedAt": 1791213947682
+}
