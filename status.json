@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-06T15:26:24.805635+00:00",
+  "updated": "2026-10-06T15:27:27.457187+00:00",
   "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "ok",
-      "ms": 26,
+      "ms": 1,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 0,
+      "ms": 1,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 741,
+      "ms": 854,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 3460,
+      "ms": 872,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -49,15 +49,20 @@
     "errors": 0,
     "haConnections": 1,
     "responseByCode": {},
-    "quota": {
-      "requestsLimit": 20000,
-      "observed": 0,
-      "sinceBootstrap": 0,
-      "usedPercentOfMonth": 0.0,
-      "bytesLimit": 1073741824,
-      "note": "计数为隧道进程启动以来累计；进程重启会归零，故月度用量为估算",
-      "projectionPending": "观测窗口不足（需累计约 30 分钟才给投影）",
-      "observedMinutes": 111
+    "telemetry": {
+      "provider": "cloudflare-quick-tunnel",
+      "observedRequests": 0,
+      "sinceProcessStart": 0,
+      "activeConnections": 0,
+      "requestErrors": 0,
+      "haConnections": 1,
+      "responseByCode": {},
+      "byteLimit": null,
+      "requestLimit": null,
+      "resetAt": null,
+      "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
+      "projectionPending": "观测窗口不足（需累计约 30 分钟才给速率）",
+      "observedMinutes": 112
     }
   },
   "metricsPort": "20241"
