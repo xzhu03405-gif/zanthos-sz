@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-06T14:44:24.070963+00:00",
+  "updated": "2026-10-06T14:56:35.058610+00:00",
   "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "ok",
-      "ms": 15,
+      "ms": 14,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 1,
+      "ms": 15,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 910,
+      "ms": 1820,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 1629,
+      "ms": 976,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -44,11 +44,21 @@
     }
   ],
   "tunnel": {
-    "totalRequests": null,
-    "concurrent": null,
-    "errors": null,
-    "haConnections": null,
-    "responseByCode": {}
+    "totalRequests": 0,
+    "concurrent": 0,
+    "errors": 0,
+    "haConnections": 1,
+    "responseByCode": {},
+    "quota": {
+      "requestsLimit": 20000,
+      "observed": 0,
+      "sinceBootstrap": 0,
+      "usedPercentOfMonth": 0.0,
+      "bytesLimit": 1073741824,
+      "note": "计数为隧道进程启动以来累计；进程重启会归零，故月度用量为估算",
+      "projectionPending": "观测窗口不足（需累计约 30 分钟才给投影）",
+      "observedMinutes": 81
+    }
   },
-  "metricsPort": null
+  "metricsPort": "20241"
 }
