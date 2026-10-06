@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T14:01:24.734570+00:00",
+  "updated": "2026-10-06T14:06:23.935979+00:00",
   "overall": "ok",
   "checks": [
     {
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 15,
+      "ms": 0,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 959,
+      "ms": 977,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 3650,
+      "ms": 2824,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -62,8 +62,10 @@
       "usedPercentOfMonth": 2.93,
       "bytesLimit": 1073741824,
       "note": "计数为隧道进程启动以来累计；进程重启会归零，故月度用量为估算",
-      "projectionPending": "观测窗口不足（需累计约 30 分钟才给投影）",
-      "observedMinutes": 26
+      "avgRequestsPerDay": 45,
+      "projectedMonth": 1375,
+      "projectedMonthPercent": 6.9,
+      "observedMinutes": 31
     }
   },
   "metricsPort": "20241"
