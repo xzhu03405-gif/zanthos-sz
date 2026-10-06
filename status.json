@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-06T16:16:22.103972+00:00",
+  "updated": "2026-10-06T16:21:22.883654+00:00",
   "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "ok",
-      "ms": 11,
+      "ms": 15,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 15,
+      "ms": 0,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 738,
+      "ms": 921,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 671,
+      "ms": 1272,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -44,33 +44,35 @@
     }
   ],
   "tunnel": {
-    "totalRequests": 92,
+    "totalRequests": 101,
     "concurrent": 0,
     "errors": 0,
     "haConnections": 1,
     "responseByCode": {
-      "200": 89,
+      "200": 94,
       "206": 1,
-      "303": 2
+      "303": 5,
+      "304": 1
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 92,
-      "sinceProcessStart": 92,
+      "observedRequests": 101,
+      "sinceProcessStart": 101,
       "activeConnections": 0,
       "requestErrors": 0,
       "haConnections": 1,
       "responseByCode": {
-        "200": 89,
+        "200": 94,
         "206": 1,
-        "303": 2
+        "303": 5,
+        "304": 1
       },
       "byteLimit": null,
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 2724,
-      "observedMinutes": 48
+      "avgRequestsPerDay": 2711,
+      "observedMinutes": 53
     }
   },
   "metricsPort": "20241"
