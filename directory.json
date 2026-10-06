@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://formed-appeared-reviews-val.trycloudflare.com",
+    "endpoint": "https://annotation-boards-deemed-jewellery.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1791298580209
+  "checkedAt": 1791300080601
 }
