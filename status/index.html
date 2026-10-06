@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ZANTHOS 服务状态</title>
+<meta name="description" content="ZANTHOS 运营站服务状态与隧道用量。" />
+<meta name="theme-color" content="#070b13" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070b13'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%2379aefe' font-family='system-ui'%3EZ%3C/text%3E%3C/svg%3E" />
+<style>
+/* 配色对齐 ZANTHOS 产品语言（运营站 /product-design.css），token 内联保持零外部依赖 */
+:root{
+  color-scheme:dark;
+  --z-space-1:4px; --z-space-2:8px; --z-space-3:12px; --z-space-4:16px;
+  --z-space-5:24px; --z-space-6:32px; --z-space-7:48px;
+  --z-radius-sm:10px; --z-radius-md:14px; --z-radius-lg:20px;
+  --z-surface-0:#070b13; --z-surface-1:#0d1523; --z-surface-2:#121d2e; --z-surface-3:#19273d;
+  --z-line:#2a3a54; --z-line-strong:#3d5578;
+  --z-text:#f2f6fc; --z-text-2:#bdc9da; --z-text-3:#8fa0b8;
+  --z-brand:#79aefe; --z-brand-strong:#3d7ee7; --z-brand-soft:#1d3152;
+  --z-positive:#67d49b; --z-warning:#f4c568; --z-negative:#ff929f;
+  --z-shadow-lg:0 24px 70px #0008;
+  --z-ease:cubic-bezier(.2,.8,.2,1);
+  --z-motion-standard:180ms;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    color-scheme:light;
+    --z-surface-0:#f3f6fa; --z-surface-1:#ffffff; --z-surface-2:#ffffff; --z-surface-3:#edf2f8;
+    --z-line:#d3dce8; --z-line-strong:#b6c4d7;
+    --z-text:#172337; --z-text-2:#52637a; --z-text-3:#6f8095;
+    --z-brand:#245fc6; --z-brand-strong:#2864cf; --z-brand-soft:#e4edfc;
+    --z-positive:#087148; --z-warning:#855a08; --z-negative:#b42d43;
+    --z-shadow-lg:0 26px 70px #1d36522b;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{background:var(--z-surface-0)}
+body{
+  min-height:100dvh;color:var(--z-text-2);
+  font-family:Inter,"Segoe UI Variable","Segoe UI","Microsoft YaHei UI","PingFang SC",system-ui,sans-serif;
+  font-feature-settings:"tnum" 1;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px;margin:0 auto;padding:var(--z-space-7) var(--z-space-5) 64px}
+header{text-align:center;padding:var(--z-space-4) 0 var(--z-space-6)}
+.brand{color:var(--z-brand);font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+h1{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.1rem);margin:var(--z-space-4) 0 var(--z-space-2);color:var(--z-text);font-weight:650}
+
+/* 总体状态 */
+.overall{
+  display:flex;align-items:center;gap:var(--z-space-4);
+  border:1px solid var(--z-line);border-radius:var(--z-radius-lg);
+  background:var(--z-surface-1);box-shadow:var(--z-shadow-lg);
+  padding:var(--z-space-5);margin-bottom:var(--z-space-6);
+}
+.overall .dot{width:14px;height:14px;border-radius:50%;flex:0 0 auto;background:var(--z-text-3)}
+.overall.ok .dot{background:var(--z-positive)}
+.overall.degraded .dot{background:var(--z-warning)}
+.overall.down .dot{background:var(--z-negative)}
+.overall .title{font-size:1.2rem;font-weight:650;color:var(--z-text);margin:0}
+.overall .sub{margin:2px 0 0;font-size:13px;color:var(--z-text-3)}
+
+h2{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--z-text-3);
+   margin:var(--z-space-6) 0 var(--z-space-3);font-weight:600}
+
+/* 检查项 */
+.checks{border:1px solid var(--z-line);border-radius:var(--z-radius-lg);background:var(--z-surface-1);overflow:hidden}
+.row{display:flex;align-items:center;gap:var(--z-space-3);padding:var(--z-space-4) var(--z-space-5);
+     border-bottom:1px solid var(--z-line)}
+.row:last-child{border-bottom:0}
+.badge{flex:0 0 auto;width:9px;height:9px;border-radius:50%;background:var(--z-text-3)}
+.badge.ok{background:var(--z-positive)}
+.badge.degraded,.badge.unknown{background:var(--z-warning)}
+.badge.down{background:var(--z-negative)}
+.badge.skipped{background:var(--z-line-strong)}
+.row .name{flex:1;color:var(--z-text);font-size:14.5px}
+.row .meta{font-size:12.5px;color:var(--z-text-3);font-variant-numeric:tabular-nums}
+
+/* 额度面板 */
+.quota{border:1px solid var(--z-line);border-radius:var(--z-radius-lg);background:var(--z-surface-1);padding:var(--z-space-5)}
+.qhead{display:flex;justify-content:space-between;align-items:baseline;gap:var(--z-space-3);flex-wrap:wrap}
+.qhead .n{color:var(--z-text);font-size:15px;font-weight:600}
+.qhead .v{color:var(--z-text-3);font-size:13px;font-variant-numeric:tabular-nums}
+.bar{height:10px;border-radius:5px;background:var(--z-surface-3);margin:var(--z-space-3) 0 var(--z-space-2);overflow:hidden}
+.bar > i{display:block;height:100%;background:var(--z-brand);width:0;transition:width .4s var(--z-ease)}
+.bar.warn > i{background:var(--z-warning)}
+.bar.bad > i{background:var(--z-negative)}
+.qnote{font-size:12.5px;color:var(--z-text-3);line-height:1.7;margin:0}
+.code{display:flex;gap:var(--z-space-3);flex-wrap:wrap;margin-top:var(--z-space-3);font-size:12.5px;color:var(--z-text-3);font-variant-numeric:tabular-nums}
+.code span{background:var(--z-surface-2);border:1px solid var(--z-line);border-radius:var(--z-radius-sm);padding:3px 9px}
+
+footer{margin-top:var(--z-space-7);padding-top:var(--z-space-5);border-top:1px solid var(--z-line);
+       text-align:center;font-size:12.5px;color:var(--z-text-3);line-height:1.8}
+a{color:var(--z-brand)}
+.err{color:var(--z-negative)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">ZANTHOS</div>
+    <h1>服务状态</h1>
+  </header>
+
+  <div id="overall" class="overall">
+    <span class="dot"></span>
+    <div>
+      <p class="title" id="overall-title">正在读取状态…</p>
+      <p class="sub" id="overall-sub"></p>
+    </div>
+  </div>
+
+  <h2>检查项</h2>
+  <div class="checks" id="checks"></div>
+
+  <h2>隧道用量</h2>
+  <div class="quota" id="quota">
+    <p class="qnote">正在读取…</p>
+  </div>
+
+  <footer>
+    数据由运营站每数分钟自检生成，页面地址永久稳定。<br />
+    <a href="../site/">返回官方站点</a> · <a href="../">进入运营站</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var LABEL = {ok:'正常', degraded:'降级', down:'故障', unknown:'未知', skipped:'本轮跳过'};
+
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function render(d){
+    var overall = document.getElementById('overall');
+    var title = document.getElementById('overall-title');
+    var sub = document.getElementById('overall-sub');
+    overall.className = 'overall ' + (d.overall || '');
+    var map = {ok:'全部正常', degraded:'部分降级', down:'存在故障'};
+    title.textContent = map[d.overall] || '状态未知';
+    sub.textContent = d.updated ? ('更新于 ' + new Date(d.updated).toLocaleString('zh-CN')) : '';
+
+    var box = document.getElementById('checks');
+    box.innerHTML = (d.checks || []).map(function(c){
+      var meta = c.ms ? (c.ms + ' ms') : LABEL[c.status] || '';
+      var detail = c.detail && c.detail !== ('HTTP ' + 200) ? c.detail : '';
+      return '<div class="row">'
+        + '<span class="badge ' + esc(c.status) + '"></span>'
+        + '<span class="name">' + esc(c.name) + (detail ? ' <span class="meta">' + esc(detail) + '</span>' : '') + '</span>'
+        + '<span class="meta">' + esc(LABEL[c.status] || c.status) + ' · ' + esc(meta) + '</span>'
+        + '</div>';
+    }).join('') || '<div class="row"><span class="name">暂无数据</span></div>';
+
+    var q = (d.tunnel || {}).quota;
+    var qbox = document.getElementById('quota');
+    if (!q){
+      qbox.innerHTML = '<p class="qnote">未取得隧道用量指标。</p>';
+      return;
+    }
+    var obs = q.observed == null ? 0 : q.observed;
+    var pct = Math.min(100, Number(q.usedPercentOfMonth || 0));
+    var proj = q.projectedMonthPercent == null ? null : Number(q.projectedMonthPercent);
+    var cls = pct >= 80 ? 'bad' : (pct >= 50 ? 'warn' : '');
+    var html = ''
+      + '<div class="qhead"><span class="n">请求数（本月估算）</span>'
+      + '<span class="v">' + obs.toLocaleString() + ' / ' + Number(q.requestsLimit).toLocaleString() + '（' + pct + '%）</span></div>'
+      + '<div class="bar ' + cls + '"><i style="width:' + pct + '%"></i></div>'
+      + '<p class="qnote">'
+      + (proj == null ? '按当前速率暂无法估算月度投影。'
+         : ('按当前速率月度投影约 <b>' + proj + '%</b>' + (proj > 100 ? ' —— <span class="err">预计超限，需立刻优化</span>' : '。')))
+      + '</p>';
+    if (q.avgRequestsPerDay != null){
+      html += '<div class="code"><span>日均请求 ' + Number(q.avgRequestsPerDay).toLocaleString() + '</span>'
+        + '<span>并发 ' + (d.tunnel.concurrent == null ? '-' : d.tunnel.concurrent) + ' / 200</span>'
+        + '<span>错误 ' + (d.tunnel.errors == null ? '-' : d.tunnel.errors) + '</span>'
+        + '<span>隧道连接 ' + (d.tunnel.haConnections == null ? '-' : d.tunnel.haConnections) + '</span></div>';
+    }
+    html += '<p class="qnote" style="margin-top:12px">' + esc(q.note || '') + '</p>';
+    qbox.innerHTML = html;
+  }
+
+  fetch('../status.json', {cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(render)
+    .catch(function(){
+      document.getElementById('overall-title').textContent = '暂时无法读取状态数据';
+      document.getElementById('quota').innerHTML = '<p class="qnote">状态文件尚未生成或暂时不可达。</p>';
+    });
+})();
+</script>
+</body>
+</html>
