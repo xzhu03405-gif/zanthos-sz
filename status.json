@@ -1,0 +1,71 @@
+{
+  "updated": "2026-10-06T13:34:59.090949+00:00",
+  "overall": "ok",
+  "checks": [
+    {
+      "id": "operations-local",
+      "name": "运营站服务（本机）",
+      "status": "ok",
+      "ms": 18,
+      "detail": "HTTP 200",
+      "costly": false
+    },
+    {
+      "id": "update-channel",
+      "name": "更新通道（本机）",
+      "status": "ok",
+      "ms": 16,
+      "detail": "HTTP 200",
+      "costly": false
+    },
+    {
+      "id": "directory-json",
+      "name": "目录文件（入口发现）",
+      "status": "ok",
+      "ms": 1210,
+      "detail": "HTTP 200",
+      "costly": false
+    },
+    {
+      "id": "site-public",
+      "name": "官方站点",
+      "status": "ok",
+      "ms": 1036,
+      "detail": "HTTP 200",
+      "costly": false
+    },
+    {
+      "id": "tunnel-public",
+      "name": "隧道外网可达",
+      "status": "ok",
+      "ms": 2628,
+      "detail": "HTTP 200",
+      "costly": true
+    }
+  ],
+  "tunnel": {
+    "totalRequests": 584,
+    "concurrent": 0,
+    "errors": 0,
+    "haConnections": 1,
+    "responseByCode": {
+      "200": 222,
+      "206": 3,
+      "303": 9,
+      "304": 349,
+      "404": 1
+    },
+    "quota": {
+      "requestsLimit": 20000,
+      "observed": 584,
+      "sinceBootstrap": 0,
+      "usedPercentOfMonth": 2.92,
+      "bytesLimit": 1073741824,
+      "note": "计数为隧道进程启动以来累计；进程重启会归零，故月度用量为估算",
+      "avgRequestsPerDay": 0,
+      "projectedMonth": 0,
+      "projectedMonthPercent": 0.0
+    }
+  },
+  "metricsPort": "20241"
+}
