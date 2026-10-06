@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://techrepublic-moment-tabs-dem.trycloudflare.com",
+    "endpoint": "https://moments-sons-prix-key.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1791230072748
+  "checkedAt": 1791279980616
 }
