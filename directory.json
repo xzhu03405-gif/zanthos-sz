@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://local-charm-wait-village.trycloudflare.com",
+    "endpoint": "https://nine-impression-collection-copies.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1791298137045
+  "checkedAt": 1791298280186
 }
