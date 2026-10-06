@@ -5,121 +5,155 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>ZANTHOS 运营站 · 官方网站</title>
 <meta name="description" content="ZANTHOS 多平台社媒运营站 —— 服务端与各端客户端下载、在线入口。" />
-<meta name="theme-color" content="#07101c" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307101c'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%238fd8ca' font-family='system-ui'%3EZ%3C/text%3E%3C/svg%3E" />
+<meta name="theme-color" content="#070b13" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070b13'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%2379aefe' font-family='system-ui'%3EZ%3C/text%3E%3C/svg%3E" />
 <style>
-  /* 配色与运营站登录页保持一致：深海军蓝 + 薄荷绿 */
+/* ─────────────────────────────────────────────────────────────
+   配色对齐 ZANTHOS 产品语言（运营站 /product-design.css）。
+   token 值照抄内联、不外链：本页托管在静态站点，无法引用隧道
+   内的样式表；内联既能拿到同一套设计语言，又保持零外部依赖。
+   默认深色，跟随系统浅色自动切换。
+   ───────────────────────────────────────────────────────────── */
+:root{
+  color-scheme:dark;
+
+  /* 间距 */
+  --z-space-1:4px; --z-space-2:8px; --z-space-3:12px; --z-space-4:16px;
+  --z-space-5:24px; --z-space-6:32px; --z-space-7:48px;
+
+  /* 圆角 */
+  --z-radius-sm:10px; --z-radius-md:14px; --z-radius-lg:20px; --z-radius-xl:26px;
+
+  /* 表面 */
+  --z-surface-0:#070b13; --z-surface-1:#0d1523;
+  --z-surface-2:#121d2e; --z-surface-3:#19273d;
+  --z-line:#2a3a54; --z-line-strong:#3d5578;
+
+  /* 文字 */
+  --z-text:#f2f6fc; --z-text-2:#bdc9da; --z-text-3:#8fa0b8;
+
+  /* 品牌 */
+  --z-brand:#79aefe; --z-brand-strong:#3d7ee7; --z-brand-soft:#1d3152;
+
+  /* 语义 */
+  --z-positive:#67d49b; --z-warning:#f4c568; --z-negative:#ff929f;
+
+  /* 阴影与焦点 */
+  --z-shadow-sm:0 1px 2px #0003,0 8px 24px #0001;
+  --z-shadow-lg:0 24px 70px #0008;
+  --z-focus:0 0 0 3px color-mix(in srgb,var(--z-brand) 28%,transparent);
+
+  /* 缓动与动效 */
+  --z-ease:cubic-bezier(.2,.8,.2,1);
+  --z-motion-fast:120ms; --z-motion-standard:180ms;
+
+  /* 主按钮文字色：深色主题品牌色偏亮，配深字 */
+  --z-on-brand:#061020;
+}
+@media (prefers-color-scheme: light){
   :root{
-    color-scheme:dark;
-    --bg:#07101c;
-    --card:rgba(10,22,36,.9);
-    --line:#35546b;
-    --text:#b9c9d4;
-    --head:#eef5fa;
-    --brand:#8fd8ca;
-    --input:#0a1725;
-    --btn:linear-gradient(135deg,#8fe1ce,#b6eddf);
-    --btn-text:#0b2924;
-    --sub:#94a9b8;
+    color-scheme:light;
+    --z-surface-0:#f3f6fa; --z-surface-1:#ffffff;
+    --z-surface-2:#ffffff; --z-surface-3:#edf2f8;
+    --z-line:#d3dce8; --z-line-strong:#b6c4d7;
+    --z-text:#172337; --z-text-2:#52637a; --z-text-3:#6f8095;
+    --z-brand:#245fc6; --z-brand-strong:#2864cf; --z-brand-soft:#e4edfc;
+    --z-positive:#087148; --z-warning:#855a08; --z-negative:#b42d43;
+    --z-shadow-sm:0 1px 2px #1e3a5a0b,0 9px 26px #1e3a5a0d;
+    --z-shadow-lg:0 26px 70px #1d36522b;
+    /* 浅色主题品牌色偏深，配白字 */
+    --z-on-brand:#ffffff;
   }
-  *{box-sizing:border-box}
-  html,body{margin:0}
-  body{
-    min-height:100dvh;
-    background:
-      radial-gradient(circle at 20% 10%,#17364a 0,transparent 35%),
-      radial-gradient(circle at 90% 90%,#203747 0,transparent 35%),
-      var(--bg);
-    color:var(--text);
-    font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1000px;margin:0 auto;padding:40px 24px 64px}
+}
 
-  /* ── 顶部 ── */
-  header{text-align:center;padding:32px 0 8px}
-  .brand{
-    color:var(--brand);font-size:13px;letter-spacing:.22em;
-    text-transform:uppercase;margin-bottom:18px;
-  }
-  h1{
-    font-size:clamp(28px,5vw,42px);line-height:1.25;margin:0 0 14px;
-    color:var(--head);font-weight:650;letter-spacing:.01em;
-  }
-  .lede{max-width:620px;margin:0 auto;color:var(--sub);font-size:16px}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{background:var(--z-surface-0)}
+body{
+  min-height:100dvh;color:var(--z-text-2);
+  font-family:Inter,"Segoe UI Variable","Segoe UI","Microsoft YaHei UI","PingFang SC",system-ui,sans-serif;
+  font-feature-settings:"tnum" 1;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{color:#fff;background:var(--z-brand-strong)}
+:where(a,button):focus-visible{outline:2px solid var(--z-brand);outline-offset:2px;box-shadow:var(--z-focus)}
 
-  /* ── 入口卡片 ── */
-  .entry{
-    margin:36px auto 0;max-width:560px;text-align:center;
-    border:1px solid var(--line);border-radius:26px;
-    background:var(--card);box-shadow:0 24px 80px #0009;
-    padding:32px;
-  }
-  .entry h2{font-size:19px;color:var(--head);margin:0 0 8px;font-weight:600}
-  .entry p{margin:0 0 22px;color:var(--sub);font-size:14px}
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    min-height:50px;padding:0 34px;border-radius:14px;border:0;
-    background:var(--btn);color:var(--btn-text);
-    font-size:16px;font-weight:650;text-decoration:none;cursor:pointer;
-    transition:filter .18s ease,transform .18s ease;
-  }
-  .btn:hover{filter:brightness(1.06)}
-  .btn:active{transform:translateY(1px)}
-  .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
-  .entry-meta{
-    margin-top:20px;padding-top:16px;border-top:1px solid #1d3346;
-    font-size:12.5px;color:var(--sub);
-  }
-  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#5f7a8c;margin-right:7px;vertical-align:middle}
-  .dot.ok{background:#8fe1ce;box-shadow:0 0 8px #8fe1ce99}
-  .dot.bad{background:#e08b7a}
+.wrap{max-width:1020px;margin:0 auto;padding:var(--z-space-7) var(--z-space-5) 64px}
 
-  /* ── 下载区 ── */
-  section{margin-top:64px}
-  h3{
-    font-size:13px;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--brand);margin:0 0 22px;font-weight:600;
-  }
-  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-  .card{
-    border:1px solid var(--line);border-radius:20px;background:var(--card);
-    padding:26px;display:flex;flex-direction:column;
-    transition:border-color .18s ease,transform .18s ease;
-  }
-  .card:hover{border-color:#4c7793;transform:translateY(-2px)}
-  .card .role{
-    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--brand);margin-bottom:10px;
-  }
-  .card .name{font-size:19px;color:var(--head);font-weight:650;margin:0 0 10px}
-  .card .desc{color:var(--sub);font-size:14px;margin:0 0 20px;flex:1}
-  .card .spec{font-size:12.5px;color:#7f95a5;margin:0 0 18px}
-  .dl{
-    display:inline-flex;align-items:center;justify-content:center;
-    min-height:44px;padding:0 20px;border-radius:12px;
-    border:1px solid #456174;background:#132538;color:#dff0ee;
-    font-size:14.5px;font-weight:600;text-decoration:none;
-    transition:background .18s ease,border-color .18s ease;
-  }
-  .dl:hover{background:#1a3046;border-color:#8fd8ca}
+/* 顶部 */
+header{text-align:center;padding:var(--z-space-6) 0 var(--z-space-3)}
+.brand{color:var(--z-brand);font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+h1{
+  font-size:clamp(1.75rem,1.2rem + 2.2vw,2.6rem);line-height:1.2;
+  margin:var(--z-space-4) 0 var(--z-space-3);color:var(--z-text);font-weight:650;letter-spacing:-.01em;
+}
+.lede{max-width:640px;margin:0 auto;color:var(--z-text-3);font-size:16px;line-height:1.7}
 
-  /* ── 说明 ── */
-  .note{
-    margin-top:26px;border:1px solid #294055;border-left:3px solid var(--brand);
-    border-radius:12px;background:rgba(10,22,36,.65);
-    padding:18px 22px;font-size:13.5px;color:var(--sub);
-  }
-  .note b{color:#cfe3dd;font-weight:600}
+/* 在线入口 */
+.entry{
+  margin:var(--z-space-7) auto 0;max-width:560px;text-align:center;
+  border:1px solid var(--z-line);border-radius:var(--z-radius-lg);
+  background:var(--z-surface-1);box-shadow:var(--z-shadow-lg);
+  padding:var(--z-space-6);
+}
+.entry h2{font-size:1.15rem;color:var(--z-text);margin:0 0 var(--z-space-2);font-weight:600}
+.entry p{margin:0 0 var(--z-space-5);color:var(--z-text-3);font-size:14px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:0 var(--z-space-6);border-radius:var(--z-radius-md);border:0;
+  background:var(--z-brand);color:var(--z-on-brand);
+  font:inherit;font-size:16px;font-weight:650;text-decoration:none;cursor:pointer;
+  transition:filter var(--z-motion-fast) var(--z-ease),transform var(--z-motion-fast) var(--z-ease);
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:translateY(1px)}
+.entry-meta{
+  margin-top:var(--z-space-5);padding-top:var(--z-space-4);
+  border-top:1px solid var(--z-line);font-size:12.5px;color:var(--z-text-3);
+}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--z-text-3);margin-right:7px;vertical-align:middle}
+.dot.ok{background:var(--z-positive)}
+.dot.bad{background:var(--z-warning)}
 
-  footer{
-    margin-top:64px;padding-top:24px;border-top:1px solid #1d3346;
-    text-align:center;font-size:12.5px;color:#6d8291;
-  }
-  code{
-    background:#0a1725;border:1px solid #294055;border-radius:6px;
-    padding:1px 6px;font-size:12.5px;color:#9fc4bd;
-  }
+/* 下载区 */
+section{margin-top:var(--z-space-7)}
+h3{
+  font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--z-text-3);margin:0 0 var(--z-space-5);font-weight:600;
+}
+.grid{display:grid;gap:var(--z-space-4);grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{
+  border:1px solid var(--z-line);border-radius:var(--z-radius-lg);
+  background:var(--z-surface-1);padding:var(--z-space-5);
+  display:flex;flex-direction:column;
+  transition:border-color var(--z-motion-standard) var(--z-ease),transform var(--z-motion-standard) var(--z-ease);
+}
+.card:hover{border-color:var(--z-line-strong);transform:translateY(-2px)}
+.card .role{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--z-brand);margin-bottom:var(--z-space-3);font-weight:600}
+.card .name{font-size:1.15rem;color:var(--z-text);font-weight:650;margin:0 0 var(--z-space-2)}
+.card .desc{color:var(--z-text-3);font-size:14px;line-height:1.65;margin:0 0 var(--z-space-5);flex:1}
+.card .spec{font-size:12.5px;color:var(--z-text-3);margin:0 0 var(--z-space-4);font-variant-numeric:tabular-nums}
+.dl{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:0 var(--z-space-5);border-radius:var(--z-radius-sm);
+  border:1px solid var(--z-line-strong);background:var(--z-surface-2);color:var(--z-text);
+  font-size:14.5px;font-weight:600;text-decoration:none;
+  transition:background var(--z-motion-standard) var(--z-ease),border-color var(--z-motion-standard) var(--z-ease);
+}
+.dl:hover{border-color:var(--z-brand);background:var(--z-brand-soft)}
+
+/* 说明 */
+.note{
+  margin-top:var(--z-space-5);border:1px solid var(--z-line);border-left:3px solid var(--z-brand);
+  border-radius:var(--z-radius-sm);background:var(--z-surface-1);
+  padding:var(--z-space-4) var(--z-space-5);font-size:13.5px;line-height:1.7;color:var(--z-text-3);
+}
+.note b{color:var(--z-text-2);font-weight:600}
+
+footer{
+  margin-top:var(--z-space-7);padding-top:var(--z-space-5);
+  border-top:1px solid var(--z-line);text-align:center;font-size:12.5px;color:var(--z-text-3);line-height:1.8;
+}
 </style>
 </head>
 <body>
@@ -131,7 +165,7 @@
     <p class="lede">服务端与各端客户端统一入口。服务器端负责采集与运营，客户端按角色接入同一套数据。</p>
   </header>
 
-  <!-- 在线入口：动态跟随当前服务地址 -->
+  <!-- 在线入口：运行时读目录文件取当前服务地址，不写死任何地址 -->
   <div class="entry">
     <h2>进入运营站</h2>
     <p>点击后自动连接当前可用的服务地址</p>
@@ -141,7 +175,6 @@
     </div>
   </div>
 
-  <!-- 下载区 -->
   <section>
     <h3>客户端下载</h3>
     <div class="grid">
@@ -199,14 +232,14 @@
   var REPO = 'xzhu03405-gif/zanthos-sz';
   var base = 'https://github.com/' + REPO + '/releases/latest/download/';
 
-  // 下载链接：指向版本发布页的稳定地址，资产名不带版本号，故换版本链接不变
-  document.querySelectorAll('[data-asset]').forEach(function(a){
+  // 下载链接：指向发布页的稳定地址。资产名不带版本号，故换版本链接不变。
+  Array.prototype.forEach.call(document.querySelectorAll('[data-asset]'), function(a){
     a.href = base + encodeURIComponent(a.getAttribute('data-asset'));
     a.setAttribute('rel','noopener');
     a.setAttribute('target','_blank');
   });
 
-  // 在线入口：读取目录文件拿到当前服务地址，自动跟随（不写死任何地址）
+  // 在线入口：读取目录文件拿到当前服务地址，自动跟随，不写死任何地址。
   var enter = document.getElementById('enter');
   var dot = document.getElementById('status-dot');
   var txt = document.getElementById('status-text');
