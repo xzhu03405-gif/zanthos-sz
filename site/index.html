@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ZANTHOS 运营站 · 官方网站</title>
+<meta name="description" content="ZANTHOS 多平台社媒运营站 —— 服务端与各端客户端下载、在线入口。" />
+<meta name="theme-color" content="#07101c" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307101c'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%238fd8ca' font-family='system-ui'%3EZ%3C/text%3E%3C/svg%3E" />
+<style>
+  /* 配色与运营站登录页保持一致：深海军蓝 + 薄荷绿 */
+  :root{
+    color-scheme:dark;
+    --bg:#07101c;
+    --card:rgba(10,22,36,.9);
+    --line:#35546b;
+    --text:#b9c9d4;
+    --head:#eef5fa;
+    --brand:#8fd8ca;
+    --input:#0a1725;
+    --btn:linear-gradient(135deg,#8fe1ce,#b6eddf);
+    --btn-text:#0b2924;
+    --sub:#94a9b8;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    min-height:100dvh;
+    background:
+      radial-gradient(circle at 20% 10%,#17364a 0,transparent 35%),
+      radial-gradient(circle at 90% 90%,#203747 0,transparent 35%),
+      var(--bg);
+    color:var(--text);
+    font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:40px 24px 64px}
+
+  /* ── 顶部 ── */
+  header{text-align:center;padding:32px 0 8px}
+  .brand{
+    color:var(--brand);font-size:13px;letter-spacing:.22em;
+    text-transform:uppercase;margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(28px,5vw,42px);line-height:1.25;margin:0 0 14px;
+    color:var(--head);font-weight:650;letter-spacing:.01em;
+  }
+  .lede{max-width:620px;margin:0 auto;color:var(--sub);font-size:16px}
+
+  /* ── 入口卡片 ── */
+  .entry{
+    margin:36px auto 0;max-width:560px;text-align:center;
+    border:1px solid var(--line);border-radius:26px;
+    background:var(--card);box-shadow:0 24px 80px #0009;
+    padding:32px;
+  }
+  .entry h2{font-size:19px;color:var(--head);margin:0 0 8px;font-weight:600}
+  .entry p{margin:0 0 22px;color:var(--sub);font-size:14px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:50px;padding:0 34px;border-radius:14px;border:0;
+    background:var(--btn);color:var(--btn-text);
+    font-size:16px;font-weight:650;text-decoration:none;cursor:pointer;
+    transition:filter .18s ease,transform .18s ease;
+  }
+  .btn:hover{filter:brightness(1.06)}
+  .btn:active{transform:translateY(1px)}
+  .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+  .entry-meta{
+    margin-top:20px;padding-top:16px;border-top:1px solid #1d3346;
+    font-size:12.5px;color:var(--sub);
+  }
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#5f7a8c;margin-right:7px;vertical-align:middle}
+  .dot.ok{background:#8fe1ce;box-shadow:0 0 8px #8fe1ce99}
+  .dot.bad{background:#e08b7a}
+
+  /* ── 下载区 ── */
+  section{margin-top:64px}
+  h3{
+    font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--brand);margin:0 0 22px;font-weight:600;
+  }
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .card{
+    border:1px solid var(--line);border-radius:20px;background:var(--card);
+    padding:26px;display:flex;flex-direction:column;
+    transition:border-color .18s ease,transform .18s ease;
+  }
+  .card:hover{border-color:#4c7793;transform:translateY(-2px)}
+  .card .role{
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--brand);margin-bottom:10px;
+  }
+  .card .name{font-size:19px;color:var(--head);font-weight:650;margin:0 0 10px}
+  .card .desc{color:var(--sub);font-size:14px;margin:0 0 20px;flex:1}
+  .card .spec{font-size:12.5px;color:#7f95a5;margin:0 0 18px}
+  .dl{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:44px;padding:0 20px;border-radius:12px;
+    border:1px solid #456174;background:#132538;color:#dff0ee;
+    font-size:14.5px;font-weight:600;text-decoration:none;
+    transition:background .18s ease,border-color .18s ease;
+  }
+  .dl:hover{background:#1a3046;border-color:#8fd8ca}
+
+  /* ── 说明 ── */
+  .note{
+    margin-top:26px;border:1px solid #294055;border-left:3px solid var(--brand);
+    border-radius:12px;background:rgba(10,22,36,.65);
+    padding:18px 22px;font-size:13.5px;color:var(--sub);
+  }
+  .note b{color:#cfe3dd;font-weight:600}
+
+  footer{
+    margin-top:64px;padding-top:24px;border-top:1px solid #1d3346;
+    text-align:center;font-size:12.5px;color:#6d8291;
+  }
+  code{
+    background:#0a1725;border:1px solid #294055;border-radius:6px;
+    padding:1px 6px;font-size:12.5px;color:#9fc4bd;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">ZANTHOS</div>
+    <h1>多平台社媒运营站</h1>
+    <p class="lede">服务端与各端客户端统一入口。服务器端负责采集与运营，客户端按角色接入同一套数据。</p>
+  </header>
+
+  <!-- 在线入口：动态跟随当前服务地址 -->
+  <div class="entry">
+    <h2>进入运营站</h2>
+    <p>点击后自动连接当前可用的服务地址</p>
+    <a id="enter" class="btn" href="../">进入运营站</a>
+    <div class="entry-meta">
+      <span id="status-dot" class="dot"></span><span id="status-text">正在获取当前服务地址…</span>
+    </div>
+  </div>
+
+  <!-- 下载区 -->
+  <section>
+    <h3>客户端下载</h3>
+    <div class="grid">
+
+      <div class="card">
+        <div class="role">服务器端</div>
+        <div class="name">ZANTHOS 服务器</div>
+        <p class="desc">运营站本体。部署后即为服务器，含采集、运营与数据服务，自带操作界面。</p>
+        <p class="spec">Windows · 约 232 MB · 需常驻运行</p>
+        <a class="dl" data-asset="ZANTHOS服务器-Setup.exe" href="#">下载安装包</a>
+      </div>
+
+      <div class="card">
+        <div class="role">桌面客户端</div>
+        <div class="name">ZANTHOS 客户数据端</div>
+        <p class="desc">瘦客户端，连接既有服务器使用，不承担采集与存储。</p>
+        <p class="spec">Windows · 约 106 MB</p>
+        <a class="dl" data-asset="ZANTHOS客户数据端-Setup.exe" href="#">下载安装包</a>
+      </div>
+
+      <div class="card">
+        <div class="role">越南节点</div>
+        <div class="name">ZANTHOS Việt Nam</div>
+        <p class="desc">越南节点的客户端发行版本。</p>
+        <p class="spec">Windows · 约 106 MB</p>
+        <a class="dl" data-asset="ZANTHOS越南客户端-Setup.exe" href="#">下载安装包</a>
+      </div>
+
+      <div class="card">
+        <div class="role">移动端</div>
+        <div class="name">ZANTHOS 手机版</div>
+        <p class="desc">手机端接入，支持扫码配对与手动填写地址两种方式。</p>
+        <p class="spec">Android · 约 105 KB</p>
+        <a class="dl" data-asset="ZANTHOS手机版.apk" href="#">下载 APK</a>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <b>关于下载</b>：安装包通过版本发布页分发，链接永久有效、换版本不变。
+      若链接尚未就绪，说明对应版本的发布包正在上传；
+      也可以直接使用网页入口进入运营站后，在其内部获取更新。
+    </div>
+  </section>
+
+  <footer>
+    ZANTHOS 运营站 · 官方页面<br />
+    页面地址永久稳定；在线服务地址会随网络环境自动切换。
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var REPO = 'xzhu03405-gif/zanthos-sz';
+  var base = 'https://github.com/' + REPO + '/releases/latest/download/';
+
+  // 下载链接：指向版本发布页的稳定地址，资产名不带版本号，故换版本链接不变
+  document.querySelectorAll('[data-asset]').forEach(function(a){
+    a.href = base + encodeURIComponent(a.getAttribute('data-asset'));
+    a.setAttribute('rel','noopener');
+    a.setAttribute('target','_blank');
+  });
+
+  // 在线入口：读取目录文件拿到当前服务地址，自动跟随（不写死任何地址）
+  var enter = document.getElementById('enter');
+  var dot = document.getElementById('status-dot');
+  var txt = document.getElementById('status-text');
+
+  function ok(ep){
+    enter.href = ep;
+    dot.className = 'dot ok';
+    txt.textContent = '当前服务地址：' + ep.replace(/^https?:\/\//,'');
+  }
+  function bad(msg){
+    dot.className = 'dot bad';
+    txt.textContent = msg;
+  }
+
+  fetch('../directory.json', {cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(d){
+      var ep = d && d.server && d.server.endpoint;
+      if (ep) { ok(ep); } else { bad('目录未包含服务地址，点击后将自动跳转'); }
+    })
+    .catch(function(){ bad('暂时无法获取服务地址，点击后将自动跳转'); });
+})();
+</script>
+</body>
+</html>
