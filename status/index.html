@@ -170,7 +170,8 @@ a{color:var(--z-brand)}
       + '<span class="v">' + obs.toLocaleString() + ' / ' + Number(q.requestsLimit).toLocaleString() + '（' + pct + '%）</span></div>'
       + '<div class="bar ' + cls + '"><i style="width:' + pct + '%"></i></div>'
       + '<p class="qnote">'
-      + (proj == null ? '按当前速率暂无法估算月度投影。'
+      + (proj == null
+         ? esc(q.projectionPending || '按当前速率暂无法估算月度投影。')
          : ('按当前速率月度投影约 <b>' + proj + '%</b>' + (proj > 100 ? ' —— <span class="err">预计超限，需立刻优化</span>' : '。')))
       + '</p>';
     if (q.avgRequestsPerDay != null){
