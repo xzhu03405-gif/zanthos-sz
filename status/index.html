@@ -114,7 +114,7 @@ a{color:var(--z-brand)}
   <h2>检查项</h2>
   <div class="checks" id="checks"></div>
 
-  <h2>隧道用量</h2>
+  <h2>隧道遥测</h2>
   <div class="quota" id="quota">
     <p class="qnote">正在读取…</p>
   </div>
@@ -155,32 +155,43 @@ a{color:var(--z-brand)}
         + '</div>';
     }).join('') || '<div class="row"><span class="name">暂无数据</span></div>';
 
-    var q = (d.tunnel || {}).quota;
+    var q = (d.tunnel || {}).telemetry;
     var qbox = document.getElementById('quota');
     if (!q){
-      qbox.innerHTML = '<p class="qnote">未取得隧道用量指标。</p>';
+      qbox.innerHTML = '<p class="qnote">未取得隧道遥测指标。</p>';
       return;
     }
-    var obs = q.observed == null ? 0 : q.observed;
-    var pct = Math.min(100, Number(q.usedPercentOfMonth || 0));
-    var proj = q.projectedMonthPercent == null ? null : Number(q.projectedMonthPercent);
-    var cls = pct >= 80 ? 'bad' : (pct >= 50 ? 'warn' : '');
+    // 只展示真实观测值：供应商未公开任何配额，此前基于假设分母的“已用百分比”
+    // 已被移除（无官方依据，会产生误导）。
+    var obs = q.observedRequests == null ? null : Number(q.observedRequests);
+    var since = q.sinceProcessStart == null ? null : Number(q.sinceProcessStart);
     var html = ''
-      + '<div class="qhead"><span class="n">请求数（本月估算）</span>'
-      + '<span class="v">' + obs.toLocaleString() + ' / ' + Number(q.requestsLimit).toLocaleString() + '（' + pct + '%）</span></div>'
-      + '<div class="bar ' + cls + '"><i style="width:' + pct + '%"></i></div>'
-      + '<p class="qnote">'
-      + (proj == null
-         ? esc(q.projectionPending || '按当前速率暂无法估算月度投影。')
-         : ('按当前速率月度投影约 <b>' + proj + '%</b>' + (proj > 100 ? ' —— <span class="err">预计超限，需立刻优化</span>' : '。')))
-      + '</p>';
-    if (q.avgRequestsPerDay != null){
-      html += '<div class="code"><span>日均请求 ' + Number(q.avgRequestsPerDay).toLocaleString() + '</span>'
-        + '<span>并发 ' + (d.tunnel.concurrent == null ? '-' : d.tunnel.concurrent) + ' / 200</span>'
-        + '<span>错误 ' + (d.tunnel.errors == null ? '-' : d.tunnel.errors) + '</span>'
-        + '<span>隧道连接 ' + (d.tunnel.haConnections == null ? '-' : d.tunnel.haConnections) + '</span></div>';
+      + '<div class="qhead"><span class="n">隧道请求计数</span>'
+      + '<span class="v">' + (obs == null ? '—' : obs.toLocaleString()) + '</span></div>'
+      + '<p class="qnote">本进程启动以来新增 <b>' + (since == null ? '—' : since.toLocaleString()) + '</b> 次请求'
+      + (q.observedMinutes != null ? '（观测约 ' + q.observedMinutes + ' 分钟）' : '') + '。</p>';
+
+    var chips = [];
+    if (q.activeConnections != null) chips.push('在途请求 ' + q.activeConnections);
+    if (q.haConnections != null) chips.push('隧道连接 ' + q.haConnections);
+    if (q.requestErrors != null) chips.push('代理错误 ' + q.requestErrors);
+    if (q.avgRequestsPerDay != null) chips.push('期内日均 ' + Number(q.avgRequestsPerDay).toLocaleString());
+    if (chips.length) {
+      html += '<div class="code">' + chips.map(function(x){ return '<span>' + esc(x) + '</span>'; }).join('') + '</div>';
     }
-    html += '<p class="qnote" style="margin-top:12px">' + esc(q.note || '') + '</p>';
+    if (q.projectionPending) {
+      html += '<p class="qnote" style="margin-top:10px">' + esc(q.projectionPending) + '</p>';
+    }
+    // 无法采集的字段显式列出为“未提供”，不填 0、不估算
+    var miss = [];
+    if (q.byteLimit === null) miss.push('流量上限');
+    if (q.requestLimit === null) miss.push('请求上限');
+    if (q.resetAt === null) miss.push('配额重置时间');
+    if (miss.length) {
+      html += '<p class="qnote" style="margin-top:10px">以下项<b>供应商未提供</b>：'
+        + esc(miss.join('、')) + '（非采集失败，故不显示、也不估算）。</p>';
+    }
+    html += '<p class="qnote" style="margin-top:10px">' + esc(q.note || '') + '</p>';
     qbox.innerHTML = html;
   }
 
