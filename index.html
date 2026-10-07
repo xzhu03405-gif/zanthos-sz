@@ -145,8 +145,9 @@
     var FALLBACK = "https://decided-verse-terrorist-phillips.trycloudflare.com";
     // 客户端入口（业务层已为 /client 加保持鉴权的 303 → /portal.html）
     var CLIENT_PATH = "/client";
-    // 服务器端入口（反代层 /server* 重写到业务层根路径 = 服务器端控制台）
-    var SERVER_PATH = "/server";
+    // 服务器端入口：当前用根路径（业务层在 SERVER_EDITION 下即服务器端控制台）。
+    // 开发端新包发布后，官方路由为 /server（届时改回 "/server"，注意不要在反代层改写路径）。
+    var SERVER_PATH = "/";
     var base = FALLBACK, ready = false;
 
     var copy = {
