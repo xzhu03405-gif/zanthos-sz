@@ -9,7 +9,6 @@
     /* ─────────────────────────────────────────────────────────────
        ZANTHOS 官方设计语言（token 内联照抄自运营站 /product-design.css）
        静态站不能外链隧道内 CSS，故把 --z-* 变量内联，保持零外部依赖。
-       来源注释：product-design.css「shared by workstation, portal and phone web」
        ───────────────────────────────────────────────────────────── */
     :root{
       color-scheme:dark;
@@ -36,7 +35,6 @@
     *{box-sizing:border-box}
     body{
       margin:0;min-height:100dvh;
-      /* 与运营站登录页 .auth-page 同一背景配方 */
       background:
         radial-gradient(circle at 18% 12%,#1a477957,transparent 33%),
         radial-gradient(circle at 85% 88%,#5a2d7450,transparent 32%),
@@ -45,9 +43,8 @@
       font:15px/1.6 Inter,"Segoe UI Variable","Segoe UI","Microsoft YaHei UI","PingFang SC",system-ui,-apple-system,sans-serif;
       display:grid;place-items:center;padding:var(--z-space-5);
     }
-    /* 与 .auth-page>main 同一卡片规格 */
     main{
-      width:min(440px,100%);padding:var(--z-space-6);
+      width:min(470px,100%);padding:var(--z-space-6);
       border:1px solid var(--z-line-strong);border-radius:var(--z-radius-xl);
       background:color-mix(in srgb,var(--z-surface-1) 96%,transparent);
       box-shadow:var(--z-shadow-lg);
@@ -55,40 +52,53 @@
     header{display:flex;justify-content:space-between;align-items:center;gap:var(--z-space-4)}
     .brand{font-size:13px;letter-spacing:.12em;color:var(--z-text)}
     select{
-      width:auto;padding:var(--z-space-2) 11px;margin:0;
+      width:auto;max-width:150px;padding:var(--z-space-2) 11px;margin:0;
       border:1px solid var(--z-line);border-radius:var(--z-radius-sm);
       background:var(--z-surface-1);color:var(--z-text);font:inherit;font-size:13px;
       transition:border-color 120ms var(--z-ease);
     }
     select:hover{border-color:var(--z-line-strong)}
-    select:focus-visible,button:focus-visible{outline:2px solid var(--z-brand);outline-offset:2px;box-shadow:var(--z-focus)}
-    h1{font-size:28px;margin:var(--z-space-5) 0 var(--z-space-2);font-weight:750;letter-spacing:-.018em}
+    h1{font-size:26px;margin:var(--z-space-5) 0 var(--z-space-2);font-weight:750;letter-spacing:-.018em}
     p{color:var(--z-text-2);margin:0}
-    .status{display:flex;align-items:center;gap:10px;margin-top:var(--z-space-5);color:var(--z-text-2);font-size:14px}
+    .entries{display:grid;gap:var(--z-space-3);margin-top:var(--z-space-5)}
+    .entry{
+      display:flex;align-items:center;gap:var(--z-space-3);
+      padding:var(--z-space-4);border:1px solid var(--z-line);border-radius:var(--z-radius-md);
+      background:var(--z-surface-2);
+    }
+    .entry .icon{
+      width:38px;height:38px;flex:0 0 auto;display:grid;place-items:center;
+      border:1px solid var(--z-line);border-radius:var(--z-radius-sm);
+      background:var(--z-surface-1);color:var(--z-brand);font-size:18px;
+    }
+    .entry .meta{min-width:0;flex:1}
+    .entry .meta b{display:block;font-weight:650;color:var(--z-text)}
+    .entry .meta span{display:block;font-size:12.5px;color:var(--z-text-3);word-break:break-all}
+    .entry button{
+      flex:0 0 auto;min-height:40px;padding:0 var(--z-space-4);
+      border:1px solid #70a4f2;border-radius:var(--z-radius-sm);
+      background:linear-gradient(180deg,#397be5,#2864cf);color:#fff;
+      font:inherit;font-weight:650;cursor:pointer;box-shadow:0 7px 18px #124aa23d;
+      transition:filter 120ms var(--z-ease);
+    }
+    .entry button:hover:not(:disabled){filter:brightness(1.08)}
+    .entry button:disabled{opacity:.5;cursor:not-allowed}
+    .entry.server button{
+      border:1px solid var(--z-line-strong);background:var(--z-surface-3);color:var(--z-text);box-shadow:none;
+    }
+    .status{display:flex;align-items:center;gap:10px;margin-top:var(--z-space-4);color:var(--z-text-2);font-size:13px}
     .spinner{
-      width:18px;height:18px;flex:0 0 auto;border-radius:50%;
-      border:2px solid var(--z-line);border-top-color:var(--z-brand);
-      animation:z-spin .8s linear infinite;
+      width:16px;height:16px;flex:0 0 auto;border-radius:50%;
+      border:2px solid var(--z-line);border-top-color:var(--z-brand);animation:z-spin .8s linear infinite;
     }
     @keyframes z-spin{to{transform:rotate(360deg)}}
-    .dest{
-      margin:10px 0 0;font-size:12.5px;color:var(--z-text-3);word-break:break-all;
-      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-    }
-    /* 与官方 .primary 同规格：渐变蓝 + 白色字 + 品牌描边 */
-    button{
-      width:100%;margin-top:var(--z-space-5);padding:13px 14px;
-      border:1px solid #70a4f2;border-radius:var(--z-radius-sm);
-      font:inherit;font-weight:650;cursor:pointer;min-height:44px;
-      background:linear-gradient(180deg,#397be5,#2864cf);color:#fff;
-      box-shadow:0 7px 18px #124aa23d;
-      transition:filter 120ms var(--z-ease),transform 120ms var(--z-ease);
-    }
-    button:hover{filter:brightness(1.08)}
-    button:active{transform:translateY(1px)}
     .foot{margin:var(--z-space-4) 0 0;font-size:12.5px;color:var(--z-text-3);line-height:1.6}
-    .hidden{display:none}
-    @media (prefers-reduced-motion:reduce){.spinner{animation:none}button{transition:none}}
+    select:focus-visible,button:focus-visible{outline:2px solid var(--z-brand);outline-offset:2px;box-shadow:var(--z-focus)}
+    @media (max-width:420px){
+      .entry{flex-wrap:wrap}
+      .entry button{width:100%}
+    }
+    @media (prefers-reduced-motion:reduce){.spinner{animation:none}button,select{transition:none}}
   </style>
 </head>
 <body>
@@ -103,32 +113,47 @@
       </select>
     </header>
 
-    <h1 id="title">正在进入运营站</h1>
-    <p id="intro">正在为你跳转，请稍候…</p>
+    <h1 id="title">选择入口</h1>
+    <p id="intro">客户端用于日常使用；服务器端用于运维管理。</p>
 
-    <div class="status">
-      <span class="spinner"></span>
-      <span id="statusText">正在连接…</span>
+    <div class="entries">
+      <div class="entry client">
+        <div class="icon">▤</div>
+        <div class="meta">
+          <b id="clientLabel">客户端</b>
+          <span id="clientHost">解析中…</span>
+        </div>
+        <button id="clientBtn" disabled>进入</button>
+      </div>
+      <div class="entry server">
+        <div class="icon">⚙</div>
+        <div class="meta">
+          <b id="serverLabel">服务器端</b>
+          <span id="serverHost">解析中…</span>
+        </div>
+        <button id="serverBtn" disabled>进入</button>
+      </div>
     </div>
-    <p class="dest hidden" id="dest"></p>
 
-    <button id="goBtn">立即进入</button>
+    <div class="status"><span class="spinner"></span><span id="statusText">正在获取当前地址…</span></div>
 
-    <p class="foot" id="foot">固定入口会自动跟随服务器地址变化，只需收藏这一个网址。</p>
+    <p class="foot" id="foot">两个入口共用一个固定网址，会自动跟随服务器地址变化，只需收藏本页。</p>
   </main>
 
   <script>
     // 回退目标：current-url.json 拉取失败时使用（此值随每次推送自动更新）
-    var FALLBACK = "https://sells-abilities-cove-obvious.trycloudflare.com";
-    // GitHub Pages 项目页基础路径：跳转时需剥离，避免把 /zanthos-sz 带到隧道上
-    var BASE = "/zanthos-sz";
-    var target = FALLBACK, redirected = false;
+    var FALLBACK = "https://decided-verse-terrorist-phillips.trycloudflare.com";
+    // 客户端入口（业务层已为 /client 加保持鉴权的 303 → /portal.html）
+    var CLIENT_PATH = "/client";
+    // 服务器端入口（反代层 /server* 重写到业务层根路径 = 服务器端控制台）
+    var SERVER_PATH = "/server";
+    var base = FALLBACK, ready = false;
 
     var copy = {
-      zh:     { t:'正在进入运营站', i:'正在为你跳转，请稍候…', b:'立即进入', conn:'正在连接…', f:'固定入口会自动跟随服务器地址变化，只需收藏这一个网址。' },
-      'zh-TW':{ t:'正在進入營運站', i:'正在為你跳轉，請稍候…', b:'立即進入', conn:'正在連線…', f:'固定入口會自動跟隨伺服器位址變化，只需收藏這一個網址。' },
-      vi:     { t:'Đang vào trạm vận hành', i:'Đang chuyển hướng, vui lòng chờ…', b:'Vào ngay', conn:'Đang kết nối…', f:'Cổng cố định tự cập nhật theo địa chỉ máy chủ, bạn chỉ cần lưu một liên kết này.' },
-      en:     { t:'Opening the workstation', i:'Redirecting, please wait…', b:'Enter now', conn:'Connecting…', f:'This fixed entry follows server address changes automatically — bookmark just this one link.' }
+      zh:     { t:'选择入口', i:'客户端用于日常使用；服务器端用于运维管理。', c:'客户端', s:'服务器端', b:'进入', wait:'正在获取当前地址…', ok:'地址就绪，请选择入口。', f:'两个入口共用一个固定网址，会自动跟随服务器地址变化，只需收藏本页。' },
+      'zh-TW':{ t:'選擇入口', i:'客戶端用於日常使用；伺服器端用於維運管理。', c:'客戶端', s:'伺服器端', b:'進入', wait:'正在取得目前位址…', ok:'位址就緒，請選擇入口。', f:'兩個入口共用一個固定網址，會自動跟隨伺服器位址變化，只需收藏本頁。' },
+      vi:     { t:'Chọn cổng vào', i:'Bản khách hàng dùng hằng ngày; bản máy chủ dùng để vận hành.', c:'Bản khách hàng', s:'Bản máy chủ', b:'Vào', wait:'Đang lấy địa chỉ hiện tại…', ok:'Đã có địa chỉ, hãy chọn cổng vào.', f:'Hai cổng vào dùng chung một liên kết cố định, tự cập nhật theo địa chỉ máy chủ.' },
+      en:     { t:'Choose an entry', i:'Client for daily use; server for operations.', c:'Client', s:'Server', b:'Enter', wait:'Resolving the current address…', ok:'Address ready — choose an entry.', f:'Both entries share one fixed link that follows server address changes automatically.' }
     };
 
     function normalize(x){
@@ -144,46 +169,46 @@
       document.documentElement.lang = (l === 'zh-TW') ? 'zh-TW' : l;
       document.getElementById('title').textContent = c.t;
       document.getElementById('intro').textContent = c.i;
-      document.getElementById('goBtn').textContent = c.b;
+      document.getElementById('clientLabel').textContent = c.c;
+      document.getElementById('serverLabel').textContent = c.s;
+      document.getElementById('clientBtn').textContent = c.b;
+      document.getElementById('serverBtn').textContent = c.b;
       document.getElementById('foot').textContent = c.f;
-      if (!redirected) document.getElementById('statusText').textContent = c.conn;
+      if (!ready) document.getElementById('statusText').textContent = c.wait;
       document.getElementById('lang').value = l;
       try { localStorage.setItem('zanthos-redirect-language', l); } catch (e) {}
       return l;
     }
 
+    function hostOf(){ return String(base).replace(/^https?:\/\//, '').replace(/\/+$/, ''); }
+
+    function go(path){ window.location.replace(base + path); }
+
+    document.getElementById('clientBtn').onclick = function(){ if (ready) go(CLIENT_PATH); };
+    document.getElementById('serverBtn').onclick = function(){ if (ready) go(SERVER_PATH); };
+
     try { apply(localStorage.getItem('zanthos-redirect-language') || navigator.language); }
     catch (e) { apply(navigator.language); }
     document.getElementById('lang').onchange = function (e) { apply(e.target.value); };
 
-    // 目标 = 隧道地址 + （剥离项目基础路径后的）子路径，保持深链可用
-    function dest() {
-      var p = location.pathname || '/';
-      if (p.indexOf(BASE) === 0) p = p.slice(BASE.length);
-      if (!p) p = '/';
-      return target + p + location.search + location.hash;
+    function readyUp(){
+      ready = true;
+      document.getElementById('clientHost').textContent = hostOf() + CLIENT_PATH;
+      document.getElementById('serverHost').textContent = hostOf() + SERVER_PATH;
+      document.getElementById('clientBtn').disabled = false;
+      document.getElementById('serverBtn').disabled = false;
+      var l = 'zh';
+      try { l = normalize(localStorage.getItem('zanthos-redirect-language') || navigator.language); } catch (e) {}
+      document.getElementById('statusText').textContent = copy[l].ok;
     }
-    function go() { redirected = true; window.location.replace(dest()); }
-    document.getElementById('goBtn').onclick = go;
 
     // 读取当前隧道地址（由深圳端自动化在域名变化时自动更新）
     try {
       fetch('current-url.json?t=' + Date.now())
         .then(function (r) { return r.json(); })
-        .then(function (d) {
-          if (d && d.url) {
-            target = d.url;
-            var el = document.getElementById('dest');
-            el.textContent = String(d.url).replace(/^https?:\/\//, '');
-            el.classList.remove('hidden');
-            setTimeout(go, 800);
-          } else { setTimeout(go, 300); }
-        })
-        .catch(function () { setTimeout(go, 300); });
-    } catch (e) { setTimeout(go, 300); }
-
-    // 兜底：4 秒后无论如何跳走
-    setTimeout(function () { if (!redirected) go(); }, 4000);
+        .then(function (d) { if (d && d.url) base = String(d.url).replace(/\/+$/, ''); readyUp(); })
+        .catch(readyUp);
+    } catch (e) { readyUp(); }
   </script>
 </body>
 </html>
