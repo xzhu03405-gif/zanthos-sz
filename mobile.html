@@ -6,50 +6,89 @@
   <meta name="robots" content="noindex" />
   <title>ZANTHOS</title>
   <style>
-    /* 样式对齐运营站登录页(/session/setup)：深海军蓝 + 薄荷绿点缀 */
-    :root{color-scheme:dark}
+    /* ─────────────────────────────────────────────────────────────
+       ZANTHOS 官方设计语言（token 内联照抄自运营站 /product-design.css）
+       静态站不能外链隧道内 CSS，故把 --z-* 变量内联，保持零外部依赖。
+       来源注释：product-design.css「shared by workstation, portal and phone web」
+       ───────────────────────────────────────────────────────────── */
+    :root{
+      color-scheme:dark;
+      --z-space-2:8px;--z-space-3:12px;--z-space-4:16px;--z-space-5:24px;--z-space-6:32px;
+      --z-radius-sm:10px;--z-radius-md:14px;--z-radius-xl:26px;
+      --z-surface-0:#070b13;--z-surface-1:#0d1523;--z-surface-2:#121d2e;--z-surface-3:#19273d;
+      --z-line:#2a3a54;--z-line-strong:#3d5578;
+      --z-text:#f2f6fc;--z-text-2:#bdc9da;--z-text-3:#8fa0b8;
+      --z-brand:#79aefe;--z-brand-strong:#3d7ee7;--z-brand-soft:#1d3152;
+      --z-shadow-lg:0 24px 70px #0008;
+      --z-focus:0 0 0 3px color-mix(in srgb,var(--z-brand) 28%,transparent);
+      --z-ease:cubic-bezier(.2,.8,.2,1);
+    }
+    @media (prefers-color-scheme:light){
+      :root{
+        color-scheme:light;
+        --z-surface-0:#f3f6fa;--z-surface-1:#ffffff;--z-surface-2:#ffffff;--z-surface-3:#edf2f8;
+        --z-line:#d3dce8;--z-line-strong:#b6c4d7;
+        --z-text:#172337;--z-text-2:#52637a;--z-text-3:#6f8095;
+        --z-brand:#245fc6;--z-brand-strong:#2864cf;--z-brand-soft:#e4edfc;
+        --z-shadow-lg:0 26px 70px #1d36522b;
+      }
+    }
     *{box-sizing:border-box}
     body{
       margin:0;min-height:100dvh;
+      /* 与运营站登录页 .auth-page 同一背景配方 */
       background:
-        radial-gradient(circle at 20% 10%,#17364a 0,transparent 35%),
-        radial-gradient(circle at 90% 90%,#203747 0,transparent 35%),
-        #07101c;
-      color:#eef5fa;font:15px system-ui,-apple-system,"Segoe UI",sans-serif;
-      display:grid;place-items:center;padding:24px;
+        radial-gradient(circle at 18% 12%,#1a477957,transparent 33%),
+        radial-gradient(circle at 85% 88%,#5a2d7450,transparent 32%),
+        var(--z-surface-0);
+      color:var(--z-text);
+      font:15px/1.6 Inter,"Segoe UI Variable","Segoe UI","Microsoft YaHei UI","PingFang SC",system-ui,-apple-system,sans-serif;
+      display:grid;place-items:center;padding:var(--z-space-5);
     }
+    /* 与 .auth-page>main 同一卡片规格 */
     main{
-      width:min(440px,100%);padding:32px;
-      border:1px solid #35546b;border-radius:26px;
-      background:rgba(10,22,36,.9);box-shadow:0 24px 80px #0009;
+      width:min(440px,100%);padding:var(--z-space-6);
+      border:1px solid var(--z-line-strong);border-radius:var(--z-radius-xl);
+      background:color-mix(in srgb,var(--z-surface-1) 96%,transparent);
+      box-shadow:var(--z-shadow-lg);
     }
-    header{display:flex;justify-content:space-between;align-items:center;gap:16px}
-    .brand{font-size:13px;letter-spacing:.12em;color:#8fd8ca}
+    header{display:flex;justify-content:space-between;align-items:center;gap:var(--z-space-4)}
+    .brand{font-size:13px;letter-spacing:.12em;color:var(--z-text)}
     select{
-      width:auto;padding:8px 11px;margin:0;
-      border:1px solid #456174;border-radius:12px;
-      background:#182f40;color:#e9f8f4;font:inherit;font-size:13px;
+      width:auto;padding:var(--z-space-2) 11px;margin:0;
+      border:1px solid var(--z-line);border-radius:var(--z-radius-sm);
+      background:var(--z-surface-1);color:var(--z-text);font:inherit;font-size:13px;
+      transition:border-color 120ms var(--z-ease);
     }
-    h1{font-size:28px;margin:18px 0 8px}
-    p{color:#b9c9d4;line-height:1.6}
-    .status{display:flex;align-items:center;gap:10px;margin-top:18px;color:#b9c9d4;font-size:14px}
+    select:hover{border-color:var(--z-line-strong)}
+    select:focus-visible,button:focus-visible{outline:2px solid var(--z-brand);outline-offset:2px;box-shadow:var(--z-focus)}
+    h1{font-size:28px;margin:var(--z-space-5) 0 var(--z-space-2);font-weight:750;letter-spacing:-.018em}
+    p{color:var(--z-text-2);margin:0}
+    .status{display:flex;align-items:center;gap:10px;margin-top:var(--z-space-5);color:var(--z-text-2);font-size:14px}
     .spinner{
       width:18px;height:18px;flex:0 0 auto;border-radius:50%;
-      border:2px solid #456174;border-top-color:#8fe1ce;animation:z-spin .8s linear infinite;
+      border:2px solid var(--z-line);border-top-color:var(--z-brand);
+      animation:z-spin .8s linear infinite;
     }
     @keyframes z-spin{to{transform:rotate(360deg)}}
     .dest{
-      margin:10px 0 0;font-size:12.5px;color:#8196a5;word-break:break-all;
+      margin:10px 0 0;font-size:12.5px;color:var(--z-text-3);word-break:break-all;
       font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
     }
+    /* 与官方 .primary 同规格：渐变蓝 + 白色字 + 品牌描边 */
     button{
-      width:100%;margin-top:20px;padding:13px 14px;border:0;border-radius:12px;
-      font:inherit;font-weight:750;cursor:pointer;
-      background:linear-gradient(135deg,#8fe1ce,#b6eddf);color:#0b2924;
+      width:100%;margin-top:var(--z-space-5);padding:13px 14px;
+      border:1px solid #70a4f2;border-radius:var(--z-radius-sm);
+      font:inherit;font-weight:650;cursor:pointer;min-height:44px;
+      background:linear-gradient(180deg,#397be5,#2864cf);color:#fff;
+      box-shadow:0 7px 18px #124aa23d;
+      transition:filter 120ms var(--z-ease),transform 120ms var(--z-ease);
     }
-    button:hover{filter:brightness(1.05)}
-    .foot{margin:14px 0 0;font-size:12.5px;color:#8196a5;line-height:1.6}
+    button:hover{filter:brightness(1.08)}
+    button:active{transform:translateY(1px)}
+    .foot{margin:var(--z-space-4) 0 0;font-size:12.5px;color:var(--z-text-3);line-height:1.6}
     .hidden{display:none}
+    @media (prefers-reduced-motion:reduce){.spinner{animation:none}button{transition:none}}
   </style>
 </head>
 <body>
