@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T08:51:22.545236+00:00",
+  "updated": "2026-10-07T08:56:24.025824+00:00",
   "overall": "ok",
   "checks": [
     {
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 14,
+      "ms": 13,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 757,
+      "ms": 2251,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 700,
+      "ms": 676,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -77,8 +77,8 @@
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 562,
-      "observedMinutes": 1043
+      "avgRequestsPerDay": 560,
+      "observedMinutes": 1048
     }
   },
   "metricsPort": "20241"
