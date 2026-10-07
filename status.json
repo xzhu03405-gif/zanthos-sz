@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-07T14:21:24.951436+00:00",
+  "updated": "2026-10-07T14:26:34.387032+00:00",
   "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "ok",
-      "ms": 2301,
+      "ms": 5396,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 51,
+      "ms": 55,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 1326,
+      "ms": 1934,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 696,
+      "ms": 636,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -44,44 +44,11 @@
     }
   ],
   "tunnel": {
-    "totalRequests": 831,
-    "concurrent": 0,
-    "errors": 9,
-    "haConnections": 1,
-    "responseByCode": {
-      "200": 379,
-      "204": 2,
-      "206": 5,
-      "303": 32,
-      "304": 395,
-      "401": 3,
-      "404": 5,
-      "502": 1
-    },
-    "telemetry": {
-      "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 831,
-      "sinceProcessStart": 831,
-      "activeConnections": 0,
-      "requestErrors": 9,
-      "haConnections": 1,
-      "responseByCode": {
-        "200": 379,
-        "204": 2,
-        "206": 5,
-        "303": 32,
-        "304": 395,
-        "401": 3,
-        "404": 5,
-        "502": 1
-      },
-      "byteLimit": null,
-      "requestLimit": null,
-      "resetAt": null,
-      "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 871,
-      "observedMinutes": 1373
-    }
+    "totalRequests": null,
+    "concurrent": null,
+    "errors": null,
+    "haConnections": null,
+    "responseByCode": {}
   },
-  "metricsPort": "20241"
+  "metricsPort": null
 }
