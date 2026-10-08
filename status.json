@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-08T02:41:26.011925+00:00",
+  "updated": "2026-10-08T02:46:36.973555+00:00",
   "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "ok",
-      "ms": 14,
+      "ms": 1,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 1,
+      "ms": 0,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 717,
+      "ms": 685,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 693,
+      "ms": 689,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -44,35 +44,35 @@
     }
   ],
   "tunnel": {
-    "totalRequests": 167,
+    "totalRequests": 169,
     "concurrent": 0,
     "errors": 5,
     "haConnections": 1,
     "responseByCode": {
-      "200": 109,
+      "200": 110,
       "206": 2,
-      "303": 50,
+      "303": 51,
       "304": 1
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 167,
-      "sinceProcessStart": 167,
+      "observedRequests": 169,
+      "sinceProcessStart": 169,
       "activeConnections": 0,
       "requestErrors": 5,
       "haConnections": 1,
       "responseByCode": {
-        "200": 109,
+        "200": 110,
         "206": 2,
-        "303": 50,
+        "303": 51,
         "304": 1
       },
       "byteLimit": null,
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 113,
-      "observedMinutes": 2113
+      "avgRequestsPerDay": 114,
+      "observedMinutes": 2118
     }
   },
   "metricsPort": "20241"
