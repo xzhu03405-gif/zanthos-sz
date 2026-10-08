@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-08T15:51:25.526781+00:00",
+  "updated": "2026-10-08T15:56:29.089953+00:00",
   "overall": "ok",
   "checks": [
     {
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 716,
+      "ms": 1784,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 710,
+      "ms": 3396,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -44,31 +44,31 @@
     }
   ],
   "tunnel": {
-    "totalRequests": 9,
+    "totalRequests": 15,
     "concurrent": 0,
     "errors": 0,
     "haConnections": 1,
     "responseByCode": {
-      "200": 6,
+      "200": 12,
       "303": 3
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 9,
-      "sinceProcessStart": 9,
+      "observedRequests": 15,
+      "sinceProcessStart": 15,
       "activeConnections": 0,
       "requestErrors": 0,
       "haConnections": 1,
       "responseByCode": {
-        "200": 6,
+        "200": 12,
         "303": 3
       },
       "byteLimit": null,
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 4,
-      "observedMinutes": 2903
+      "avgRequestsPerDay": 7,
+      "observedMinutes": 2908
     }
   },
   "metricsPort": "20241"
