@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-08T15:56:29.089953+00:00",
+  "updated": "2026-10-08T16:01:26.267102+00:00",
   "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "ok",
-      "ms": 1,
+      "ms": 15,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 1,
+      "ms": 15,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 1784,
+      "ms": 766,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 3396,
+      "ms": 932,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -44,31 +44,33 @@
     }
   ],
   "tunnel": {
-    "totalRequests": 15,
+    "totalRequests": 31,
     "concurrent": 0,
     "errors": 0,
     "haConnections": 1,
     "responseByCode": {
-      "200": 12,
-      "303": 3
+      "200": 25,
+      "206": 1,
+      "303": 5
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 15,
-      "sinceProcessStart": 15,
+      "observedRequests": 31,
+      "sinceProcessStart": 31,
       "activeConnections": 0,
       "requestErrors": 0,
       "haConnections": 1,
       "responseByCode": {
-        "200": 12,
-        "303": 3
+        "200": 25,
+        "206": 1,
+        "303": 5
       },
       "byteLimit": null,
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 7,
-      "observedMinutes": 2908
+      "avgRequestsPerDay": 15,
+      "observedMinutes": 2913
     }
   },
   "metricsPort": "20241"
