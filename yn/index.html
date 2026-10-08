@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>ZANTHOS · 进入越南端客户端</title>
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       ZANTHOS 官方设计语言（token 内联照抄自运营站 /product-design.css）
+       静态站不能外链隧道内 CSS，故把 --z-* 变量内联，保持零外部依赖。
+       ───────────────────────────────────────────────────────────── */
+    :root{
+      color-scheme:dark;
+      --z-space-2:8px;--z-space-3:12px;--z-space-4:16px;--z-space-5:24px;--z-space-6:32px;
+      --z-radius-sm:10px;--z-radius-md:14px;--z-radius-xl:26px;
+      --z-surface-0:#070b13;--z-surface-1:#0d1523;--z-surface-2:#121d2e;--z-surface-3:#19273d;
+      --z-line:#2a3a54;--z-line-strong:#3d5578;
+      --z-text:#f2f6fc;--z-text-2:#bdc9da;--z-text-3:#8fa0b8;
+      --z-brand:#79aefe;--z-brand-strong:#3d7ee7;--z-brand-soft:#1d3152;
+      --z-shadow-lg:0 24px 70px #0008;
+      --z-focus:0 0 0 3px color-mix(in srgb,var(--z-brand) 28%,transparent);
+      --z-ease:cubic-bezier(.2,.8,.2,1);
+    }
+    @media (prefers-color-scheme:light){
+      :root{
+        color-scheme:light;
+        --z-surface-0:#f3f6fa;--z-surface-1:#ffffff;--z-surface-2:#ffffff;--z-surface-3:#edf2f8;
+        --z-line:#d3dce8;--z-line-strong:#b6c4d7;
+        --z-text:#172337;--z-text-2:#52637a;--z-text-3:#6f8095;
+        --z-brand:#245fc6;--z-brand-strong:#2864cf;--z-brand-soft:#e4edfc;
+        --z-shadow-lg:0 26px 70px #1d36522b;
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;min-height:100dvh;
+      background:
+        radial-gradient(circle at 18% 12%,#1a477957,transparent 33%),
+        radial-gradient(circle at 85% 88%,#5a2d7450,transparent 32%),
+        var(--z-surface-0);
+      color:var(--z-text);
+      font:15px/1.6 Inter,"Segoe UI Variable","Segoe UI","Microsoft YaHei UI","PingFang SC",system-ui,-apple-system,sans-serif;
+      display:grid;place-items:center;padding:var(--z-space-5);
+    }
+    main{
+      width:min(440px,100%);padding:var(--z-space-6);
+      border:1px solid var(--z-line-strong);border-radius:var(--z-radius-xl);
+      background:color-mix(in srgb,var(--z-surface-1) 96%,transparent);
+      box-shadow:var(--z-shadow-lg);
+    }
+    header{display:flex;justify-content:space-between;align-items:center;gap:var(--z-space-4)}
+    .brand{font-size:13px;letter-spacing:.12em;color:var(--z-text)}
+    select{
+      width:auto;max-width:150px;padding:var(--z-space-2) 11px;margin:0;
+      border:1px solid var(--z-line);border-radius:var(--z-radius-sm);
+      background:var(--z-surface-1);color:var(--z-text);font:inherit;font-size:13px;
+      transition:border-color 120ms var(--z-ease);
+    }
+    select:hover{border-color:var(--z-line-strong)}
+    .role{
+      display:inline-flex;align-items:center;gap:var(--z-space-2);
+      margin-top:var(--z-space-5);padding:6px 11px;
+      border:1px solid #3d5578;border-radius:999px;
+      background:#1d3152;color:#79aefe;
+      font-size:12.5px;font-weight:650;letter-spacing:.02em;
+    }
+    h1{font-size:26px;margin:var(--z-space-3) 0 var(--z-space-2);font-weight:750;letter-spacing:-.018em}
+    p{color:var(--z-text-2);margin:0}
+    .dest{
+      margin-top:var(--z-space-5);padding:var(--z-space-4);
+      border:1px solid var(--z-line);border-radius:var(--z-radius-md);
+      background:var(--z-surface-2);
+      font-size:12.5px;color:var(--z-text-3);word-break:break-all;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    }
+    button.go{
+      width:100%;min-height:46px;margin-top:var(--z-space-4);padding:0 var(--z-space-4);
+      border:1px solid #70a4f2;border-radius:var(--z-radius-sm);
+      background:linear-gradient(180deg,#397be5,#2864cf);color:#fff;
+      font:inherit;font-weight:650;cursor:pointer;box-shadow:0 7px 18px #124aa23d;
+      transition:filter 120ms var(--z-ease);
+    }
+    button.go:hover:not(:disabled){filter:brightness(1.08)}
+    button.go:disabled{opacity:.55;cursor:progress}
+    .status{display:flex;align-items:center;gap:10px;margin-top:var(--z-space-4);color:var(--z-text-2);font-size:13px}
+    .spinner{
+      width:16px;height:16px;flex:0 0 auto;border-radius:50%;
+      border:2px solid var(--z-line);border-top-color:var(--z-brand);animation:z-spin .8s linear infinite;
+    }
+    @keyframes z-spin{to{transform:rotate(360deg)}}
+    .foot{margin:var(--z-space-4) 0 0;font-size:12.5px;color:var(--z-text-3);line-height:1.6}
+    select:focus-visible,button:focus-visible{outline:2px solid var(--z-brand);outline-offset:2px;box-shadow:var(--z-focus)}
+    @media (prefers-reduced-motion:reduce){.spinner{animation:none}button,select{transition:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="brand">ZANTHOS</span>
+      <select id="lang" aria-label="界面语言">
+        <option value="zh">简体中文</option>
+        <option value="zh-TW">繁體中文</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="en">English</option>
+      </select>
+    </header>
+
+    <div class="role"><span id="roleIcon">▤</span><span id="roleText">越南端 · 客户端</span></div>
+    <h1 id="title">进入越南端客户端</h1>
+    <p id="intro">越南节点日常使用入口：内容工作台与账号管理。</p>
+
+    <div class="dest" id="dest">正在获取越南节点当前地址…</div>
+
+    <button class="go" id="go" disabled>进入客户端</button>
+
+    <div class="status"><span class="spinner"></span><span id="statusText">正在获取越南节点当前地址…</span></div>
+
+    <p class="foot" id="foot">本入口指向越南节点（yn）；运维管理请使用越南端服务器端入口。</p>
+  </main>
+
+  <script>
+    /* 由 make-entries.py 生成，请勿手改；要改就改生成脚本再重跑。 */
+    // 落地路径：客户端 /client → /portal.html；服务器端 /server → /server-console.html
+    // （鉴权、登录、非管理员 403 全部由运营站本体执行，本页不做任何判断）
+    var NEXT = "/client";
+    // fetch 失败时的兜底地址（生成时快照，正常路径由 current-url.json 覆盖）
+    var FALLBACK = "https://aruba-qualified-cook-educated.trycloudflare.com";
+    var URLJSON = "../yn-url.json";
+    var ROLE_ZH = "越南端 · 客户端";
+    var base = FALLBACK, ready = false, done = false;
+
+    var copy = {
+      zh:     { role:'越南端 · 客户端', t:'进入越南端客户端', i:'越南节点日常使用入口：内容工作台与账号管理。', b:'进入客户端', wait:'正在获取越南节点当前地址…', ok:'地址就绪，正在进入…', f:'本入口指向越南节点（yn）；运维管理请使用越南端服务器端入口。' },
+      'zh-TW':{ role:'越南端 · 客戶端', t:'進入越南端客戶端', i:'越南節點日常使用入口：內容工作台與帳號管理。', b:'進入客戶端', wait:'正在取得越南節點目前位址…', ok:'位址就緒，正在進入…', f:'本入口指向越南節點（yn）；維運管理請使用越南端伺服器端入口。' },
+      vi:     { role:'Việt Nam · Bản khách hàng', t:'Vào bản khách hàng Việt Nam', i:'Cổng dùng hằng ngày của nút Việt Nam: bảng làm việc nội dung và quản lý tài khoản.', b:'Vào', wait:'Đang lấy địa chỉ nút Việt Nam…', ok:'Đã có địa chỉ, đang vào…', f:'Cổng này trỏ tới nút Việt Nam (yn); vận hành dùng cổng máy chủ.' },
+      en:     { role:'Vietnam node · Client', t:'Open the Vietnam client', i:'Daily entry for the Vietnam node: content workspace and account management.', b:'Open', wait:'Resolving the Vietnam node address…', ok:'Address ready, entering…', f:'This entry targets the Vietnam node (yn); use the server entry for operations.' }
+    };
+
+    function normalize(x){
+      x = String(x || '').toLowerCase();
+      if (['zh-tw','zh-hk','zh-mo'].indexOf(x) >= 0) return 'zh-TW';
+      if (x.indexOf('vi') === 0) return 'vi';
+      if (x.indexOf('en') === 0) return 'en';
+      return 'zh';
+    }
+    function current(){
+      var raw = '';
+      try { raw = localStorage.getItem('zanthos-redirect-language') || navigator.language; }
+      catch (e) { raw = navigator.language; }
+      return normalize(raw);
+    }
+    function apply(value){
+      var l = normalize(value), c = copy[l];
+      document.documentElement.lang = (l === 'zh-TW') ? 'zh-TW' : l;
+      document.title = 'ZANTHOS · ' + c.t;
+      document.getElementById('roleText').textContent = c.role;
+      document.getElementById('title').textContent = c.t;
+      document.getElementById('intro').textContent = c.i;
+      document.getElementById('go').textContent = c.b;
+      document.getElementById('foot').textContent = c.f;
+      document.getElementById('statusText').textContent = ready ? c.ok : c.wait;
+      document.getElementById('lang').value = l;
+      try { localStorage.setItem('zanthos-redirect-language', l); } catch (e) {}
+      return l;
+    }
+    function hostOf(){ return String(base).replace(/^https?:\/\//, '').replace(/\/+$/, ''); }
+    function go(){
+      if (done) return; done = true;
+      document.getElementById('go').disabled = true;
+      window.location.replace(base + NEXT);
+    }
+    function readyUp(){
+      ready = true;
+      document.getElementById('dest').textContent = hostOf() + NEXT;
+      document.getElementById('go').disabled = false;
+      apply(current());
+      // 手动模式：?manual=1 时停留在本页，仅展示目标地址（便于排查）
+      if (String(location.search).indexOf('manual=1') < 0) setTimeout(go, 320);
+    }
+
+    document.getElementById('go').onclick = go;
+    try { apply(current()); } catch (e) { apply('zh'); }
+    document.getElementById('lang').onchange = function (e) { apply(e.target.value); };
+
+    // 读取当前隧道地址（由深圳端自动化在域名变化时自动更新）
+    try {
+      fetch(URLJSON + '?t=' + Date.now())
+        .then(function (r) { return r.json(); })
+        .then(function (d) { if (d && d.url) base = String(d.url).replace(/\/+$/, ''); readyUp(); })
+        .catch(readyUp);
+    } catch (e) { readyUp(); }
+    // 极端兜底：3.5 秒内无论如何都要走
+    setTimeout(function(){ if (!done) go(); }, 3500);
+  </script>
+</body>
+</html>
