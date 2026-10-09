@@ -1,31 +1,16 @@
 {
   "version": 1,
-  "servers": [
-    {
-      "id": "shenzhen-public",
-      "name": "ZANTHOS Shenzhen",
-      "endpoint": "https://increased-shown-feat-desktop.trycloudflare.com",
-      "countryCode": "",
-      "enabled": true,
-      "priority": 100
-    },
-    {
-      "id": "vietnam-public",
-      "name": "ZANTHOS Vietnam",
-      "endpoint": "https://aruba-qualified-cook-educated.trycloudflare.com",
-      "countryCode": "VN",
-      "enabled": true,
-      "priority": 100
-    }
-  ],
   "server": {
     "id": "shenzhen-public",
-    "name": "ZANTHOS Shenzhen",
-    "endpoint": "https://increased-shown-feat-desktop.trycloudflare.com",
+    "name": "Shenzhen public entry",
+    "endpoint": "https://lakes-displaying-zero-installing.trycloudflare.com",
     "countryCode": "",
-    "enabled": true,
-    "priority": 100,
-    "selectedBy": "fallback"
+    "countryName": "",
+    "region1": "",
+    "region2": "",
+    "region3": "",
+    "selectedBy": "fallback",
+    "matchedLocationDepth": 0
   },
-  "checkedAt": 1791506105038
+  "checkedAt": 1791551184692
 }
