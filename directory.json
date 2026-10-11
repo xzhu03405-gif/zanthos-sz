@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://sales-jewelry-cbs-latinas.trycloudflare.com",
+    "endpoint": "https://bangua-host.tailca00ab.ts.net",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1791743362792
+  "checkedAt": 1791743589642
 }
