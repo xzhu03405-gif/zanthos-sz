@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://bangua-host.tailca00ab.ts.net",
+    "endpoint": "https://guidance-oklahoma-submitting-households.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1791749483430
+  "checkedAt": 1791772229637
 }
