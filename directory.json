@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://gabriel-pan-aquarium-gardens.trycloudflare.com",
+    "endpoint": "https://low-displays-carl-mystery.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1792316184992
+  "checkedAt": 1792350384565
 }
