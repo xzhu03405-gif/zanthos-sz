@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-18T23:26:27.525346+00:00",
+  "updated": "2026-10-18T23:31:25.381235+00:00",
   "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "ok",
-      "ms": 16,
+      "ms": 22,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 15,
+      "ms": 14,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 720,
+      "ms": 670,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 716,
+      "ms": 687,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -45,30 +45,30 @@
     {
       "id": "tunnel-public",
       "name": "隧道外网可达",
-      "status": "ok",
-      "ms": 1074,
-      "detail": "HTTP 200",
+      "status": "skipped",
+      "ms": 0,
+      "detail": "降频：约 55 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 15,
+    "totalRequests": 16,
     "concurrent": 0,
     "errors": 0,
     "haConnections": 1,
     "responseByCode": {
-      "200": 4,
+      "200": 5,
       "303": 11
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 15,
-      "sinceProcessStart": 15,
+      "observedRequests": 16,
+      "sinceProcessStart": 16,
       "activeConnections": 0,
       "requestErrors": 0,
       "haConnections": 1,
       "responseByCode": {
-        "200": 4,
+        "200": 5,
         "303": 11
       },
       "byteLimit": null,
@@ -76,7 +76,7 @@
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
       "avgRequestsPerDay": 1,
-      "observedMinutes": 17758
+      "observedMinutes": 17763
     }
   },
   "metricsPort": "20241"
