@@ -1,28 +1,28 @@
 {
-  "updated": "2026-10-19T15:06:35.281176+00:00",
+  "updated": "2026-10-19T15:11:37.430999+00:00",
   "overall": "down",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
-      "status": "down",
-      "ms": 2043,
-      "detail": "URLError",
+      "status": "ok",
+      "ms": 1802,
+      "detail": "HTTP 200",
       "costly": false
     },
     {
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "down",
-      "ms": 2035,
-      "detail": "URLError",
+      "ms": 5509,
+      "detail": "HTTP 204",
       "costly": false
     },
     {
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 3540,
+      "ms": 2330,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 1581,
+      "ms": 1083,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -47,7 +47,7 @@
       "name": "隧道外网可达",
       "status": "skipped",
       "ms": 0,
-      "detail": "降频：约 14 分钟后再探测（地址变更会立刻探测）",
+      "detail": "降频：约 9 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
@@ -82,7 +82,7 @@
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
       "avgRequestsPerDay": 5,
-      "observedMinutes": 18698
+      "observedMinutes": 18703
     }
   },
   "metricsPort": "20241"
