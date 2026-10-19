@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19T14:16:28.295142+00:00",
+  "updated": "2026-10-19T14:21:34.674821+00:00",
   "overall": "down",
   "checks": [
     {
@@ -22,16 +22,16 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 1916,
+      "ms": 1744,
       "detail": "HTTP 200",
       "costly": false
     },
     {
       "id": "site-public",
       "name": "官方站点",
-      "status": "down",
-      "ms": 1314,
-      "detail": "HTTP 503",
+      "status": "ok",
+      "ms": 6020,
+      "detail": "HTTP 200",
       "costly": false
     },
     {
@@ -45,9 +45,9 @@
     {
       "id": "tunnel-public",
       "name": "隧道外网可达",
-      "status": "skipped",
-      "ms": 0,
-      "detail": "降频：约 0 分钟后再探测（地址变更会立刻探测）",
+      "status": "ok",
+      "ms": 1222,
+      "detail": "HTTP 200",
       "costly": true
     }
   ],
@@ -82,7 +82,7 @@
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
       "avgRequestsPerDay": 5,
-      "observedMinutes": 18648
+      "observedMinutes": 18653
     }
   },
   "metricsPort": "20241"
