@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23T17:31:25.444591+00:00",
+  "updated": "2026-10-23T17:36:27.237416+00:00",
   "overall": "down",
   "checks": [
     {
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "down",
-      "ms": 2,
+      "ms": 3,
       "detail": "HTTP 204",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 744,
+      "ms": 1713,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 670,
+      "ms": 1877,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -47,33 +47,33 @@
       "name": "隧道外网可达",
       "status": "skipped",
       "ms": 0,
-      "detail": "降频：约 15 分钟后再探测（地址变更会立刻探测）",
+      "detail": "降频：约 9 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 26,
+    "totalRequests": 28,
     "concurrent": 0,
     "errors": 0,
     "haConnections": 1,
     "responseByCode": {
-      "200": 10,
+      "200": 11,
       "206": 1,
-      "303": 11,
+      "303": 12,
       "401": 3,
       "502": 1
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 26,
-      "sinceProcessStart": 26,
+      "observedRequests": 28,
+      "sinceProcessStart": 28,
       "activeConnections": 0,
       "requestErrors": 0,
       "haConnections": 1,
       "responseByCode": {
-        "200": 10,
+        "200": 11,
         "206": 1,
-        "303": 11,
+        "303": 12,
         "401": 3,
         "502": 1
       },
@@ -81,8 +81,8 @@
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 12,
-      "observedMinutes": 3039
+      "avgRequestsPerDay": 13,
+      "observedMinutes": 3044
     }
   },
   "metricsPort": "20241"
