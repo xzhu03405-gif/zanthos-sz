@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-26T14:31:30.699808+00:00",
+  "updated": "2026-10-26T14:36:31.486606+00:00",
   "overall": "down",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "down",
-      "ms": 2035,
+      "ms": 2034,
       "detail": "URLError",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "down",
-      "ms": 2045,
+      "ms": 2038,
       "detail": "URLError",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 750,
+      "ms": 722,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 691,
+      "ms": 1705,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -47,34 +47,36 @@
       "name": "隧道外网可达",
       "status": "skipped",
       "ms": 0,
-      "detail": "降频：约 5 分钟后再探测（地址变更会立刻探测）",
+      "detail": "降频：约 0 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 1,
+    "totalRequests": 19,
     "concurrent": 0,
-    "errors": 0,
+    "errors": 6,
     "haConnections": 1,
     "responseByCode": {
-      "200": 1
+      "200": 1,
+      "502": 12
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 1,
-      "sinceProcessStart": 1,
+      "observedRequests": 19,
+      "sinceProcessStart": 19,
       "activeConnections": 0,
-      "requestErrors": 0,
+      "requestErrors": 6,
       "haConnections": 1,
       "responseByCode": {
-        "200": 1
+        "200": 1,
+        "502": 12
       },
       "byteLimit": null,
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 0,
-      "observedMinutes": 7179
+      "avgRequestsPerDay": 3,
+      "observedMinutes": 7184
     }
   },
   "metricsPort": "20241"
