@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://row-juvenile-niagara-physicians.trycloudflare.com",
+    "endpoint": "https://shaft-missed-karl-digit.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1793132785629
+  "checkedAt": 1793133686350
 }
