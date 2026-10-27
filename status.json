@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-27T14:12:32.909761+00:00",
+  "updated": "2026-10-27T14:16:59.451530+00:00",
   "overall": "down",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "down",
-      "ms": 2045,
+      "ms": 2041,
       "detail": "URLError",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "down",
-      "ms": 2059,
+      "ms": 2065,
       "detail": "URLError",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 14741,
+      "ms": 1633,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 7943,
+      "ms": 1489,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -46,8 +46,8 @@
       "id": "tunnel-public",
       "name": "隧道外网可达",
       "status": "degraded",
-      "ms": 246,
-      "detail": "URLError",
+      "ms": 1134,
+      "detail": "HTTP 530",
       "costly": true
     }
   ],
