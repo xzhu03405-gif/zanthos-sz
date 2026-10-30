@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-30T05:21:32.218566+00:00",
+  "updated": "2026-10-30T05:26:31.578874+00:00",
   "overall": "down",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "down",
-      "ms": 2058,
+      "ms": 2064,
       "detail": "URLError",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "down",
-      "ms": 2055,
+      "ms": 2040,
       "detail": "URLError",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 1126,
+      "ms": 1790,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 2673,
+      "ms": 1202,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -47,12 +47,12 @@
       "name": "隧道外网可达",
       "status": "skipped",
       "ms": 0,
-      "detail": "降频：约 35 分钟后再探测（地址变更会立刻探测）",
+      "detail": "降频：约 30 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 4494,
+    "totalRequests": 4542,
     "concurrent": 0,
     "errors": 89,
     "haConnections": 1,
@@ -62,12 +62,12 @@
       "303": 7,
       "304": 3,
       "401": 9,
-      "502": 3397
+      "502": 3445
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 4494,
-      "sinceProcessStart": 4494,
+      "observedRequests": 4542,
+      "sinceProcessStart": 4542,
       "activeConnections": 0,
       "requestErrors": 89,
       "haConnections": 1,
@@ -77,14 +77,14 @@
         "303": 7,
         "304": 3,
         "401": 9,
-        "502": 3397
+        "502": 3445
       },
       "byteLimit": null,
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 522,
-      "observedMinutes": 12389
+      "avgRequestsPerDay": 527,
+      "observedMinutes": 12394
     }
   },
   "metricsPort": "20241"
