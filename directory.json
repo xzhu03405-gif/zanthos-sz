@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://ending-explore-aus-logo.trycloudflare.com",
+    "endpoint": "https://immune-nation-innovations-zip.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1793382086575
+  "checkedAt": 1793517388039
 }
