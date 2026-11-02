@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://package-hub-chevy-resolve.trycloudflare.com",
+    "endpoint": "https://exchanges-sword-server-tries.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1793569285322
+  "checkedAt": 1793587585759
 }
