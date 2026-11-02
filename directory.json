@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://donate-ashley-tree-prison.trycloudflare.com",
+    "endpoint": "https://apnic-cow-cache-lightbox.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1793617286974
+  "checkedAt": 1793628090647
 }
