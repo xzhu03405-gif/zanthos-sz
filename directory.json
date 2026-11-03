@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://schools-stability-consequently-designation.trycloudflare.com",
+    "endpoint": "https://disc-satisfactory-prototype-shots.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1793725890706
+  "checkedAt": 1793726188038
 }
