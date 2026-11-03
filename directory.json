@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://salon-arm-willing-loves.trycloudflare.com",
+    "endpoint": "https://schools-stability-consequently-designation.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1793634388941
+  "checkedAt": 1793699786697
 }
