@@ -1,12 +1,12 @@
 {
-  "updated": "2026-11-03T03:41:30.351373+00:00",
+  "updated": "2026-11-03T03:56:31.257472+00:00",
   "overall": "down",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "down",
-      "ms": 2056,
+      "ms": 2058,
       "detail": "URLError",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "down",
-      "ms": 2051,
+      "ms": 2060,
       "detail": "URLError",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 588,
+      "ms": 537,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 746,
+      "ms": 2251,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -45,14 +45,14 @@
     {
       "id": "tunnel-public",
       "name": "隧道外网可达",
-      "status": "degraded",
-      "ms": 1224,
-      "detail": "HTTP 502",
+      "status": "skipped",
+      "ms": 0,
+      "detail": "降频：约 44 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 503,
+    "totalRequests": 552,
     "concurrent": 0,
     "errors": 0,
     "haConnections": 1,
@@ -61,12 +61,12 @@
       "206": 1,
       "303": 8,
       "401": 6,
-      "502": 464
+      "502": 513
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 503,
-      "sinceProcessStart": 503,
+      "observedRequests": 552,
+      "sinceProcessStart": 552,
       "activeConnections": 0,
       "requestErrors": 0,
       "haConnections": 1,
@@ -75,14 +75,14 @@
         "206": 1,
         "303": 8,
         "401": 6,
-        "502": 464
+        "502": 513
       },
       "byteLimit": null,
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 40,
-      "observedMinutes": 18049
+      "avgRequestsPerDay": 44,
+      "observedMinutes": 18064
     }
   },
   "metricsPort": "20241"
