@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07T06:31:26.099840+00:00",
+  "updated": "2026-11-07T06:36:28.350609+00:00",
   "overall": "ok",
   "checks": [
     {
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 16,
+      "ms": 15,
       "detail": "HTTP 204",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 746,
+      "ms": 759,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 702,
+      "ms": 2494,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -47,17 +47,17 @@
       "name": "隧道外网可达",
       "status": "skipped",
       "ms": 0,
-      "detail": "降频：约 55 分钟后再探测（地址变更会立刻探测）",
+      "detail": "降频：约 50 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 4606,
+    "totalRequests": 4617,
     "concurrent": 0,
     "errors": 136,
     "haConnections": 1,
     "responseByCode": {
-      "200": 4342,
+      "200": 4353,
       "204": 37,
       "206": 5,
       "303": 50,
@@ -67,13 +67,13 @@
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 4606,
-      "sinceProcessStart": 4606,
+      "observedRequests": 4617,
+      "sinceProcessStart": 4617,
       "activeConnections": 0,
       "requestErrors": 136,
       "haConnections": 1,
       "responseByCode": {
-        "200": 4342,
+        "200": 4353,
         "204": 37,
         "206": 5,
         "303": 50,
@@ -85,8 +85,8 @@
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 276,
-      "observedMinutes": 23979
+      "avgRequestsPerDay": 277,
+      "observedMinutes": 23984
     }
   },
   "metricsPort": "20241"
