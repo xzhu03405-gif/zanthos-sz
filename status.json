@@ -1,12 +1,12 @@
 {
-  "updated": "2026-11-08T17:11:24.939669+00:00",
+  "updated": "2026-11-08T17:16:25.145079+00:00",
   "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
       "status": "ok",
-      "ms": 1,
+      "ms": 2,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 15,
+      "ms": 1,
       "detail": "HTTP 204",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 764,
+      "ms": 749,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 726,
+      "ms": 720,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -47,17 +47,17 @@
       "name": "隧道外网可达",
       "status": "skipped",
       "ms": 0,
-      "detail": "降频：约 50 分钟后再探测（地址变更会立刻探测）",
+      "detail": "降频：约 45 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 1672,
+    "totalRequests": 1682,
     "concurrent": 0,
     "errors": 42,
     "haConnections": 1,
     "responseByCode": {
-      "200": 1581,
+      "200": 1591,
       "204": 6,
       "206": 5,
       "303": 20,
@@ -66,13 +66,13 @@
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 1672,
-      "sinceProcessStart": 1672,
+      "observedRequests": 1682,
+      "sinceProcessStart": 1682,
       "activeConnections": 0,
       "requestErrors": 42,
       "haConnections": 1,
       "responseByCode": {
-        "200": 1581,
+        "200": 1591,
         "204": 6,
         "206": 5,
         "303": 20,
@@ -84,7 +84,7 @@
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
       "avgRequestsPerDay": 92,
-      "observedMinutes": 26059
+      "observedMinutes": 26064
     }
   },
   "metricsPort": "20241"
