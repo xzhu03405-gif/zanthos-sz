@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08T18:31:25.221827+00:00",
+  "updated": "2026-11-08T18:36:24.925217+00:00",
   "overall": "ok",
   "checks": [
     {
@@ -14,7 +14,7 @@
       "id": "update-channel",
       "name": "更新通道（本机）",
       "status": "ok",
-      "ms": 15,
+      "ms": 16,
       "detail": "HTTP 204",
       "costly": false
     },
@@ -22,7 +22,7 @@
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 702,
+      "ms": 537,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 666,
+      "ms": 485,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -47,17 +47,17 @@
       "name": "隧道外网可达",
       "status": "skipped",
       "ms": 0,
-      "detail": "降频：约 35 分钟后再探测（地址变更会立刻探测）",
+      "detail": "降频：约 30 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 1830,
+    "totalRequests": 1840,
     "concurrent": 0,
     "errors": 42,
     "haConnections": 1,
     "responseByCode": {
-      "200": 1739,
+      "200": 1749,
       "204": 6,
       "206": 5,
       "303": 20,
@@ -66,13 +66,13 @@
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 1830,
-      "sinceProcessStart": 1830,
+      "observedRequests": 1840,
+      "sinceProcessStart": 1840,
       "activeConnections": 0,
       "requestErrors": 42,
       "haConnections": 1,
       "responseByCode": {
-        "200": 1739,
+        "200": 1749,
         "204": 6,
         "206": 5,
         "303": 20,
@@ -83,8 +83,8 @@
       "requestLimit": null,
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
-      "avgRequestsPerDay": 100,
-      "observedMinutes": 26139
+      "avgRequestsPerDay": 101,
+      "observedMinutes": 26144
     }
   },
   "metricsPort": "20241"
