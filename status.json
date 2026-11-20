@@ -1,28 +1,28 @@
 {
-  "updated": "2026-11-20T13:57:17.912603+00:00",
-  "overall": "down",
+  "updated": "2026-11-20T14:01:31.741446+00:00",
+  "overall": "ok",
   "checks": [
     {
       "id": "operations-local",
       "name": "运营站服务（本机）",
-      "status": "down",
-      "ms": 12022,
-      "detail": "TimeoutError",
+      "status": "ok",
+      "ms": 3136,
+      "detail": "HTTP 200",
       "costly": false
     },
     {
       "id": "update-channel",
       "name": "更新通道（本机）",
-      "status": "down",
-      "ms": 12000,
-      "detail": "TimeoutError",
+      "status": "ok",
+      "ms": 3,
+      "detail": "HTTP 204",
       "costly": false
     },
     {
       "id": "directory-json",
       "name": "目录文件（入口发现）",
       "status": "ok",
-      "ms": 12050,
+      "ms": 2099,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -30,7 +30,7 @@
       "id": "site-public",
       "name": "官方站点",
       "status": "ok",
-      "ms": 1732,
+      "ms": 1383,
       "detail": "HTTP 200",
       "costly": false
     },
@@ -47,14 +47,14 @@
       "name": "隧道外网可达",
       "status": "skipped",
       "ms": 0,
-      "detail": "降频：约 39 分钟后再探测（地址变更会立刻探测）",
+      "detail": "降频：约 35 分钟后再探测（地址变更会立刻探测）",
       "costly": true
     }
   ],
   "tunnel": {
-    "totalRequests": 196,
-    "concurrent": 2,
-    "errors": 20,
+    "totalRequests": 204,
+    "concurrent": 0,
+    "errors": 30,
     "haConnections": 1,
     "responseByCode": {
       "200": 125,
@@ -65,10 +65,10 @@
     },
     "telemetry": {
       "provider": "cloudflare-quick-tunnel",
-      "observedRequests": 196,
-      "sinceProcessStart": 196,
-      "activeConnections": 2,
-      "requestErrors": 20,
+      "observedRequests": 204,
+      "sinceProcessStart": 204,
+      "activeConnections": 0,
+      "requestErrors": 30,
       "haConnections": 1,
       "responseByCode": {
         "200": 125,
@@ -82,7 +82,7 @@
       "resetAt": null,
       "note": "cloudflared 只提供请求数与并发；不提供任何字节数，也不提供任何上限/配额（byteLimit/requestLimit/resetAt 均为 null，属“供应商未提供”，非采集失败）。且请求数为进程级累计计数器，cloudflared 重启即归零，不等于月度累计值。",
       "avgRequestsPerDay": 6,
-      "observedMinutes": 43145
+      "observedMinutes": 43149
     }
   },
   "metricsPort": "20241"
