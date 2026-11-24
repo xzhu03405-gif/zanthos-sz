@@ -3,7 +3,7 @@
   "server": {
     "id": "shenzhen-public",
     "name": "Shenzhen public entry",
-    "endpoint": "https://disclaimers-telling-renaissance-disk.trycloudflare.com",
+    "endpoint": "https://clips-jennifer-relevance-operational.trycloudflare.com",
     "countryCode": "",
     "countryName": "",
     "region1": "",
@@ -12,5 +12,5 @@
     "selectedBy": "fallback",
     "matchedLocationDepth": 0
   },
-  "checkedAt": 1795454187482
+  "checkedAt": 1795527987105
 }
